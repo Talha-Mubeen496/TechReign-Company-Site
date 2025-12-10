@@ -1,0 +1,399 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#app {
+  min-height: 100vh;
+  background: #030617;
+  background-image: radial-gradient(circle at 15% 20%, rgba(95, 108, 255, 0.3), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(95, 108, 255, 0.25), transparent 40%),
+    linear-gradient(135deg, #030617 0%, #18113a 55%, #0b2f55 100%);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  color: #e4e8ff;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  background: transparent; /* Transparent so fixed ::before pseudo-element shows through */
+  color: #e4e8ff;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overscroll-behavior-y: none;
+  /* GPU acceleration moved to #app to preserve fixed positioning for cursor */
+}
+
+/* Fixed background layer to prevent flickering - PRESERVES EXACT ORIGINAL DESIGN */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  background: #030617;
+  background-image: radial-gradient(circle at 15% 20%, rgba(95, 108, 255, 0.3), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(95, 108, 255, 0.25), transparent 40%),
+    linear-gradient(135deg, #030617 0%, #18113a 55%, #0b2f55 100%);
+  background-size: 120% 120%, 120% 120%, 100% 100%;
+  z-index: -1;
+  pointer-events: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  animation: gradientShift 25s ease-in-out infinite;
+}
+
+/* Animated gradient background - subtle movement */
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 0%, 100% 100%, 0% 0%;
+  }
+  50% {
+    background-position: 20% 20%, 80% 80%, 0% 0%;
+  }
+}
+
+
+.container-max {
+  @apply mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8;
+}
+
+.section-padding {
+  @apply py-section;
+}
+
+.heading-label {
+  @apply text-xs font-semibold tracking-[0.25em] text-accent-teal uppercase;
+}
+
+.primary-heading {
+  @apply font-display text-4xl sm:text-5xl lg:text-[3.5rem] leading-tight text-text-primary;
+}
+
+.secondary-heading {
+  @apply font-display text-3xl sm:text-[2.5rem] leading-snug text-text-primary;
+}
+
+.glass-card {
+  @apply rounded-3xl bg-neutral-gray/70 shadow-soft ring-1 ring-white/5 backdrop-blur-2xl;
+}
+
+.btn-primary {
+  @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full bg-gradient-to-r from-[#5F6CFF] via-[#C65CF5] to-[#FF2E93] px-8 py-3 text-sm font-semibold text-white shadow-soft transition;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.35), transparent 45%),
+    radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.3), transparent 45%);
+  opacity: 0;
+  transition: opacity 220ms ease-out;
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary span {
+  position: relative;
+  z-index: 10;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-2.5 text-xs font-medium text-text-secondary shadow-soft transition hover:border-white/40 hover:bg-white/10;
+}
+
+.magnetic {
+  position: relative;
+}
+
+.magnetic-inner {
+  position: relative;
+  transition: transform 180ms ease-out;
+}
+
+.magnetic-hover {
+  transform: translate3d(var(--tx, 0px), var(--ty, 0px), 0);
+}
+
+.cursor-dot,
+.cursor-dot-outline {
+  pointer-events: none;
+  position: fixed !important;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  z-index: 99999 !important;
+  will-change: left, top;
+  transition: none !important;
+  margin: 0;
+  padding: 0;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(95, 108, 255, 0.9);
+}
+
+.cursor-dot-outline {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(198, 92, 245, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 768px) {
+  .cursor-dot,
+  .cursor-dot-outline {
+    display: none;
+  }
+}
+
+
+.section-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-sheen::before,
+.section-sheen::after {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  border-radius: 40%;
+  filter: blur(120px);
+  opacity: 0.35;
+  z-index: 0;
+  }
+
+.section-sheen::before {
+  background: radial-gradient(circle, rgba(95, 108, 255, 0.35), transparent 55%);
+  }
+
+.section-sheen::after {
+  background: radial-gradient(circle, rgba(95, 108, 255, 0.3), transparent 60%);
+  transform: translate(35%, 20%);
+  }
+
+.section-sheen > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Prevent scroll flickering - PERFORMANCE OPTIMIZATIONS ONLY (doesn't change design) */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure no gaps during scroll - optimized */
+main {
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+  background: transparent;
+  contain: layout style paint;
+  will-change: scroll-position;
+}
+
+/* Ensure sections don't cause background gaps */
+section {
+  background: transparent;
+  position: relative;
+}
+
+/* Prevent flicker on backdrop-filter elements - optimized */
+.backdrop-blur-2xl,
+[class*="backdrop-blur"] {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+/* Performance: Reduce backdrop-blur on mobile */
+@media (max-width: 768px) {
+  [class*="backdrop-blur"] {
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+}
+
+/* Optimize animations for performance */
+.motion-div,
+[data-framer-component] {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Smooth page transitions - non-blocking */
+main {
+  animation: pageFadeIn 0.3s ease-out;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Link hover effects */
+a[href^="/"]:not(.no-transition) {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+a[href^="/"]:not(.no-transition)::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--accent-blue), var(--accent-violet));
+  transition: width 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+a[href^="/"]:not(.no-transition):hover::after {
+  width: 100%;
+}
+
+/* Smooth transitions for interactive elements */
+button,
+a,
+[role="button"] {
+  transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
+              opacity 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+}
+
+/* Remove any shadow/border from header logo button */
+header button:first-child,
+header button:first-child * {
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+button:active,
+a:active,
+[role="button"]:active {
+  transform: scale(0.98);
+}
+
+/* Optimize hover effects */
+.group:hover .group-hover\:scale-105 {
+  transform: scale(1.05) translateZ(0);
+}
+
+/* Mobile touch optimizations */
+@media (max-width: 768px) {
+  /* Better touch targets */
+  button,
+  a,
+  [role="button"],
+  input,
+  textarea,
+  select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Smooth scrolling on iOS */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent pull-to-refresh on mobile */
+  body {
+    overscroll-behavior-y: contain;
+  }
+
+  /* Better text selection */
+  p, span, h1, h2, h3, h4, h5, h6 {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Improve tap responsiveness */
+button:active,
+a:active,
+[role="button"]:active {
+  transform: scale(0.97);
+}
+
+/* Swipe gestures for mobile */
+@media (hover: none) and (pointer: coarse) {
+  /* Better touch feedback */
+  button,
+  a,
+  [role="button"] {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .motion-div,
+  [data-framer-component] {
+    transform: none !important;
+  }
+}
+
+/* Shake animation for form validation errors */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shake {
+    animation: none;
+  }
+}
+
