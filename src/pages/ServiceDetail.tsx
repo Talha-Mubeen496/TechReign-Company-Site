@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft, CheckCircle2, ArrowRight, Target, Users, Rocket, Zap, TrendingUp, Lightbulb, Palette, Code, Video, Share2, Box, Search, Globe, Layers, Film, MessageSquare, Shield } from 'lucide-react'
+import { ArrowLeft, CheckCircle2, ArrowRight, Target, Users, Rocket, Zap, TrendingUp, Palette, Code, Video, Share2, Box, Search, Globe, Layers, Film, MessageSquare, Shield } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '../utils/animations'
 import { Header } from '../components/Navigation/Header'

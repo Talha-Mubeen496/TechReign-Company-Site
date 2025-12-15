@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '../../utils/animations'
-import { Check, ArrowRight } from 'lucide-react'
+import { Check } from 'lucide-react'
 
 interface PricingPlan {
   name: string
