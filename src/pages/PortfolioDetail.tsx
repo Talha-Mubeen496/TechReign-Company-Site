@@ -10,26 +10,32 @@ const categoryData: Record<string, { title: string; tag: string; images: string[
   'logo-design': {
     title: 'Graphics and 3D',
     tag: 'GRAPHICS AND 3D',
-    images: ['/graphics/img1.jpg', '/graphics/img2.jpg', '/graphics/img3.jpg' 
-      , '/graphics/img4.jpg', '/graphics/img5.jpg' , '/graphics/img6.jpg', '/graphics/img7.jpg', 
-      '/graphics/img8.jpg', '/graphics/img9.jpg', '/graphics/img10.jpg', '/graphics/img11.jpg', '/graphics/img12.jpg',
-      '/graphics/img13.jpg', '/graphics/img14.webp' ,'/graphics/do-3d-professional-business-logo-design-within-24-hours.jpg'
-    ], // Add images: ['/images/logo-1.jpg', '/images/logo-2.jpg', ...]
+    images: ['/graphics/img1.jpeg', '/graphics/img20.jpg', '/graphics/img24.webp' 
+      , '/graphics/img25.jpg', '/graphics/img26.jpg' , '/graphics/img6.jpeg', '/graphics/img7.jpg', 
+      '/graphics/img8.jpg', '/graphics/img18.jpg', '/graphics/img10.jpg', '/graphics/img11.jpg', '/graphics/img12.jpg',
+      '/graphics/img13.jpg', '/graphics/img9.jpeg' ,'/graphics/img23.jpg'
+    ], 
   },
   'web-development': {
     title: 'Web Development',
     tag: 'WEB DEVELOPMENT',
-    images: ['/web/web1.webp'], // Add images: ['/images/web-1.jpg', '/images/web-2.jpg', ...]
+    images: ['/web/web1.webp','/web/1.jpg','/web/2.jpg','/web/3.jpg','/web/4.jpg','/web/5.jpg',
+    '/web/6.jpg','/web/7.jpg','/web/8.jpg','/web/9.jpg','/web/10.jpg','/web/11.jpg','/web/12.jpg',
+    '/web/13.jpg', '/web/14.jpg','/web/15.jpg', '/web/16.jpg', '/web/17.jpg', '/web/18.jpg', '/web/19.jpg',
+    '/web/20.jpg', '/web/21.jpg', '/web/22.jpg', '/web/23.jpg', '/web/24.jpg', '/web/25.jpg'
+    ], 
   },
   'branding': {
     title: 'Branding',
     tag: 'BRANDING',
-    images: ['/branding/img1.jpg','/branding/img2.jpg','/branding/img3.jpg','/branding/img4.jpg','/branding/img5.jpg','/branding/img6.jpg', ], // Add images: ['/images/branding-1.jpg', '/images/branding-2.jpg', ...]
+    images: ['/branding/img1.jpg','/branding/img2.jpg','/branding/img3.jpg',
+      '/branding/img4.jpg','/branding/img5.jpg','/branding/img6.jpg', '/branding/img7.jpg', '/branding/img8.jpg',
+    '/branding/img9.jpg' ,'/branding/img10.jpg' , '/branding/img11.jpg' , '/branding/img12.jpg', '/branding/img13.png'], 
   },
   'e-commerce': {
     title: 'E-commerce',
     tag: 'E-COMMERCE',
-    images: ['/web/web1.webp'], // Add images: ['/images/ecommerce-1.jpg', '/images/ecommerce-2.jpg', ...]
+    images: [], 
   },
 }
 
