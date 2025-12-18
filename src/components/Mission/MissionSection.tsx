@@ -43,7 +43,7 @@ export const MissionSection: React.FC = () => {
               />
               <StatCounter
                 label="Projects Completed"
-                end={850}
+                end={150}
               />
               <StatCounter
                 label="Happy Clients"
