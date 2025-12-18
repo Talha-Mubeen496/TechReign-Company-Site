@@ -7,10 +7,10 @@ import { ProjectCard } from './ProjectCard'
 
 // One portfolio card per category
 const categoryPortfolio = [
-  { id: 1, title: 'Graphics and 3D', tag: 'GRAPHICS AND 3D', year: '2024', category: 'Graphics and 3D', categorySlug: 'logo-design' },
-  { id: 2, title: 'Web Development', tag: 'WEB DEVELOPMENT', year: '2024', category: 'Web Development', categorySlug: 'web-development' },
-  { id: 3, title: 'Branding', tag: 'BRANDING', year: '2024', category: 'Branding', categorySlug: 'branding' },
-  { id: 4, title: 'E-commerce', tag: 'E-COMMERCE', year: '2024', category: 'E-commerce', categorySlug: 'e-commerce' },
+  { id: 1, title: 'Graphics and 3D', tag: 'GRAPHICS AND 3D', year: '2025', category: 'Graphics and 3D', categorySlug: 'logo-design' },
+  { id: 2, title: 'Web Development', tag: 'WEB DEVELOPMENT', year: '2025', category: 'Web Development', categorySlug: 'web-development' },
+  { id: 3, title: 'Branding', tag: 'BRANDING', year: '2025', category: 'Branding', categorySlug: 'branding' },
+  { id: 4, title: 'E-commerce', tag: 'E-COMMERCE', year: '2025', category: 'E-commerce', categorySlug: 'e-commerce' },
 ]
 
 export const PortfolioSection: React.FC = () => {

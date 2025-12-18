@@ -10,10 +10,11 @@ const categoryData: Record<string, { title: string; tag: string; images: string[
   'logo-design': {
     title: 'Graphics and 3D',
     tag: 'GRAPHICS AND 3D',
-    images: ['/graphics/img1.jpeg', '/graphics/img20.jpg', '/graphics/img24.webp' 
-      , '/graphics/img25.jpg', '/graphics/img26.jpg' , '/graphics/img6.jpeg', '/graphics/img7.jpg', 
-      '/graphics/img8.jpg', '/graphics/img18.jpg', '/graphics/img10.jpg', '/graphics/img11.jpg', '/graphics/img12.jpg',
-      '/graphics/img13.jpg', '/graphics/img9.jpeg' ,'/graphics/img23.jpg'
+    images: ['/graphics/img1.jpeg', '/graphics/img2.jpeg', '/graphics/img3.jpeg' 
+      , '/graphics/img4.jpeg', '/graphics/img15.jpg' , '/graphics/img6.jpeg',  
+      '/graphics/img18.jpg', '/graphics/img10.jpg', '/graphics/img11.jpg', '/graphics/img12.jpg',
+      '/graphics/img13.jpg', '/graphics/img9.jpeg', '/graphics/img19.png','/graphics/img20.png', '/graphics/img21.png', '/graphics/img21.webp', '/graphics/img22.webp',
+      '/graphics/img23.webp', '/graphics/img24.webp', '/graphics/img25.jpg', '/graphics/img26.png', '/graphics/img27.webp'
     ], 
   },
   'web-development': {
