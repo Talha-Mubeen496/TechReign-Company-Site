@@ -28,7 +28,7 @@ const StatItem: React.FC<{ label: string; end: number; suffix?: string }> = ({
 export const StatsBar: React.FC = () => {
   return (
     <div className="mt-10 grid gap-6 rounded-3xl border border-white/10 bg-white/5 p-4 shadow-soft backdrop-blur md:grid-cols-3 md:px-6 md:py-5">
-      <StatItem label="Projects delivered with measurable outcomes" end={500} />
+      <StatItem label="Projects delivered with measurable outcomes" end={120} />
       <StatItem label="Client success rate across engagements" end={98} suffix="%" />
       <StatItem label="Years designing and shipping digital products" end={10} suffix="+" />
     </div>
