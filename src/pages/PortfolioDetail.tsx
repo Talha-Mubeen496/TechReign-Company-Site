@@ -33,10 +33,10 @@ const categoryData: Record<string, { title: string; tag: string; images: string[
       '/branding/img4.jpg','/branding/img5.jpg','/branding/img6.jpg', '/branding/img7.jpg', '/branding/img8.jpg',
     '/branding/img9.jpg' ,'/branding/img10.jpg' , '/branding/img11.jpg' , '/branding/img12.jpg', '/branding/img13.png'], 
   },
-  'e-commerce': {
-    title: 'E-commerce',
-    tag: 'E-COMMERCE',
-    images: [], 
+  'web3': {
+    title: 'Web3',
+    tag: 'WEB3',
+    images: ['/web3/1.jpg', '/web3/2.webp', '/web3/3.webp', '/web3/4.webp', '/web3/5.webp', '/web3/6.webp', '/web3/7.webp', '/web3/8.webp', '/web3/9.webp'], 
   },
 }
 
@@ -64,7 +64,7 @@ export const PortfolioDetail: React.FC = () => {
   const category = projectSlug ? categoryData[projectSlug] : null
   
   // Check if this is a web development or e-commerce category (full-page screenshots)
-  const isWebCategory = projectSlug === 'web-development' || projectSlug === 'e-commerce'
+  const isWebCategory = projectSlug === 'web-development' || projectSlug === 'web3'
 
   // Open lightbox
   const openLightbox = (index: number) => {

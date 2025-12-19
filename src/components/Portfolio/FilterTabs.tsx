@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
-const tabs = ['All Work', 'Graphics and 3D', 'Web Development', 'Branding', 'E-commerce'] as const
+const tabs = ['All Work', 'Graphics and 3D', 'Web Development', 'Branding', 'Web3'] as const
 export type PortfolioFilter = (typeof tabs)[number]
 
 // Map category names to slugs
@@ -10,7 +10,7 @@ const categorySlugMap: Record<string, string> = {
   'Graphics and 3D': 'logo-design',
   'Web Development': 'web-development',
   'Branding': 'branding',
-  'E-commerce': 'e-commerce',
+  'Web3': 'web3',
 }
 
 interface FilterTabsProps {

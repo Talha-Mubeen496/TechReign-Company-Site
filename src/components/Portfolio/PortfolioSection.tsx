@@ -10,7 +10,7 @@ const categoryPortfolio = [
   { id: 1, title: 'Graphics and 3D', tag: 'GRAPHICS AND 3D', year: '2025', category: 'Graphics and 3D', categorySlug: 'logo-design' },
   { id: 2, title: 'Web Development', tag: 'WEB DEVELOPMENT', year: '2025', category: 'Web Development', categorySlug: 'web-development' },
   { id: 3, title: 'Branding', tag: 'BRANDING', year: '2025', category: 'Branding', categorySlug: 'branding' },
-  { id: 4, title: 'E-commerce', tag: 'E-COMMERCE', year: '2025', category: 'E-commerce', categorySlug: 'e-commerce' },
+  { id: 4, title: 'Web3', tag: 'WEB3', year: '2025', category: 'Web3', categorySlug: 'web3' },
 ]
 
 export const PortfolioSection: React.FC = () => {
@@ -33,7 +33,7 @@ export const PortfolioSection: React.FC = () => {
           <h2 className="secondary-heading">Check Our Portfolio</h2>
           <p className="mt-4 text-sm leading-relaxed text-white/80 md:text-base">
             Explore our collection of creative work across web development, branding, graphics, and 
-            e-commerce solutions. Each project represents our commitment to quality, innovation, and 
+            e-commerce and Web3 solutions. Each project represents our commitment to quality, innovation, and 
             delivering exceptional results that exceed expectations.
           </p>
           <FilterTabs
