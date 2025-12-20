@@ -38,20 +38,22 @@ export const HeroSection: React.FC = () => {
         >
           <motion.div variants={fadeInUp}>
             <p className="heading-label mb-4">Bring Your Business Ideas to Life</p>
-            <h1 className="primary-heading max-w-xl text-white">
-              Bring your business ideas to{' '}
-              <span className="relative inline-block">
+           <h1 className="primary-heading max-w-xl text-white">
+              Digital Studio For Business{' '}
+            <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-accent-blue via-blue-400 to-accent-blue bg-clip-text text-transparent">
-                life
+                Growth
               </span>
-                <span className="absolute inset-x-0 bottom-0 h-2 translate-y-1 rounded-full bg-accent-blue/15" />
+              <span className="absolute inset-x-0 bottom-0 h-2 translate-y-1 rounded-full bg-accent-blue/15" />
               </span>
               .
-            </h1>
+          </h1>
+          {/* <p className="mt-2 text-xs font-medium uppercase tracking-[0.24em] text-white/60 md:text-[11px]">
+  Web Development • SEO • Brand Design • 3D Experiences
+</p> */}
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-white/80 md:text-base">
-              Your ideas deserve more than just planning—they deserve action. TechReign builds
-              digital experiences that turn concepts into meaningful results with innovation that
-              feels effortless.
+              TechReign is a digital experience studio that designs and builds high‑converting websites,
+              search‑optimized content, and premium 3D visuals to help ambitious businesses grow online.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -69,8 +71,11 @@ export const HeroSection: React.FC = () => {
                 Web Development
               </span>
               <span>SEO & Growth Strategy</span>
-              <span>Product Design & Figma</span>
-              <span>Blockchain · Ecommerce · Video Editing</span>
+              <span>Brand Design & Figma</span>
+              <span>3d Experinces</span>
+              <span>Brand Design & Figma</span>
+              <span>Web3· Blockchain</span>
+              <span>Ecommerce</span>
             </div>
 
             <StatsBar />
