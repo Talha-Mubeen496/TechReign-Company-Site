@@ -71,7 +71,6 @@ export const HeroSection: React.FC = () => {
                 Web Development
               </span>
               <span>SEO & Growth Strategy</span>
-              <span>Brand Design & Figma</span>
               <span>3d Experinces</span>
               <span>Brand Design & Figma</span>
               <span>Web3· Blockchain</span>
