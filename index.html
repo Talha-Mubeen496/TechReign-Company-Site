@@ -2,27 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/graphics/fav.png" /> -->
-
+    
+    <!-- Favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="/profile/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/profile/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/profile/favicon-16x16.png">
+    <!-- FIXED: Changed from /profile/favicon.ico to /favicon.ico -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="manifest" href="/profile/site.webmanifest">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechReign – Digital Experience Studio | Web Development, SEO & 3D Design</title>
+    
+    <!-- Optimized for "tech reign" ranking -->
+    <title>TechReign - Digital Studio for Web Development, SEO & 3D Design Services</title>
 
-    <!-- Basic SEO -->
+    <!-- Optimized meta description -->
     <meta
       name="description"
-      content="TechReign is a digital experience studio offering web development, SEO, brand design, 3D visuals and Web3 solutions. We help businesses launch modern, high-converting websites and stronger online brands."
+      content="Tech Reign is a premier digital studio specializing in custom web development, SEO growth strategy, and 3D design services. We build high-converting websites and online experiences for businesses worldwide."
     />
 
-    <!-- Google Search Console (replace CONTENT with your code when you get it) -->
-    <!-- <meta name="google-site-verification" content="YOUR_GSC_CODE_HERE" /> -->
+    <!-- ADD YOUR GOOGLE SEARCH CONSOLE CODE HERE -->
+    <!-- <meta name="google-site-verification" content="PASTE_YOUR_ACTUAL_CODE_HERE" /> -->
 
     <!-- Open Graph / Social sharing -->
-    <meta property="og:title" content="TechReign – Digital Experience Studio" />
+    <meta property="og:title" content="Tech Reign – Digital Experience Studio" />
     <meta
       property="og:description"
       content="Web development, SEO, brand design, 3D visuals & Web3 solutions for modern businesses."
@@ -33,12 +37,42 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="TechReign – Digital Experience Studio" />
+    <meta name="twitter:title" content="Tech Reign – Digital Experience Studio" />
     <meta
       name="twitter:description"
       content="Web development, SEO, brand design, 3D visuals & Web3 solutions for modern businesses."
     />
     <meta name="twitter:image" content="https://tech-reign.com/og-image.png" />
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "name": "Tech Reign Digital Studio",
+          "alternateName": "TechReign",
+          "url": "https://tech-reign.com",
+          "logo": "https://tech-reign.com/graphics/logo.png",
+          "description": "Digital studio offering web development, SEO, and 3D design services.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "Pakistan"  // Your actual country
+          },
+          "serviceType": ["Web Development", "SEO Services", "3D Design", "Brand Design"],
+          "areaServed": {
+            "@type": "Country",
+            "name": "Worldwide"
+          },
+          "availableChannel": {
+            "@type": "ServiceChannel",
+            "serviceUrl": "https://tech-reign.com",
+            "serviceLocation": {
+              "@type": "VirtualLocation",
+              "name": "Online/Remote Services"
+            }
+          }
+        }
+      </script>
   </head>
   <body>
     <div id="app"></div>
