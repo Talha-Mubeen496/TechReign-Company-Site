@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
   const isHomePage = location.pathname === '/'
   
   // Try multiple logo file paths
-  const logoPaths = ['/graphics/logo.png', '/logo.svg', '/logo.jpg', '/logo.webp', '/Logo.png', '/Logo.svg']
+  const logoPaths = ['/logo.png', '/logo.svg', '/logo.jpg', '/logo.webp', '/Logo.png', '/Logo.svg']
   const [currentLogoPath, setCurrentLogoPath] = useState(logoPaths[0])
 
   useEffect(() => {

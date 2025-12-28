@@ -1,5 +1,5 @@
 import React from 'react'
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react'
+import { Facebook, Instagram, Linkedin, } from 'lucide-react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 export const Footer: React.FC = () => {
@@ -47,7 +47,7 @@ export const Footer: React.FC = () => {
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full overflow-hidden shrink-0">
                 <img 
-                  src="/graphics/logo.png" 
+                  src="/logo.png" 
                   alt="TechReign Logo" 
                   className="h-full w-full object-contain"
                   onError={(e) => {
@@ -75,15 +75,42 @@ export const Footer: React.FC = () => {
               Creative software team building digital solutions that move brands forward.
             </p>
             <div className="mt-4 flex gap-2">
-              {[Twitter, Facebook, Instagram, Linkedin].map((Icon, idx) => (
-                <button
-                  key={idx}
-                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
-                  aria-label="Social link"
-                >
-                  <Icon size={14} />
-                </button>
-              ))}
+              {/* <a
+                href=""
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
+                aria-label="Twitter link"
+              >
+                <Twitter size={14} />
+              </a> */}
+              <a
+                href="https://www.facebook.com/profile.php?id=61585578450592"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
+                aria-label="Facebook link"
+              >
+                <Facebook size={14} />
+              </a>
+              <a
+                href="https://www.instagram.com/techreign_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
+                aria-label="Instagram link"
+              >
+                <Instagram size={14} />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/techreign"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
+                aria-label="LinkedIn link"
+              >
+                <Linkedin size={14} />
+              </a>
             </div>
           </div>
 
