@@ -15,10 +15,10 @@ interface PricingPlan {
 const serviceCategories = [
   { id: 'web-development', label: 'Web Development' },
   { id: 'seo', label: 'SEO' },
-  { id: 'graphics-3d', label: 'Graphics & 3D' },
+  { id: 'graphics-3d', label: 'Graphics and 3D' },
   { id: 'video-editing', label: 'Video Editing' },
   { id: 'social-media', label: 'Social Media' },
-  { id: 'web3', label: 'Web 3' },
+  { id: 'web3', label: 'Web3' },
 ]
 
 const pricingData: Record<string, PricingPlan[]> = {

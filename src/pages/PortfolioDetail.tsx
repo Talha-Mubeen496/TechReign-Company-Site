@@ -349,7 +349,7 @@ export const PortfolioDetail: React.FC = () => {
                     ))}
                   </div>
                 ) : (
-                  /* Graphics & Branding: Grid layout */
+                  /* Graphics and Branding: Grid layout */
                   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {category.images.map((image, index) => (
                       <motion.div

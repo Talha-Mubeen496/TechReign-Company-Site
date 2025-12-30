@@ -37,7 +37,7 @@ const services = [
   },
   {
     icon: <Box size={20} />,
-    title: 'Web 3',
+    title: 'Web3',
     description: 'Navigate the decentralized web with blockchain solutions, smart contracts, NFT development, and Web3 integration services.',
     serviceSlug: 'web-3',
   },

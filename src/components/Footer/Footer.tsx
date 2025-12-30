@@ -137,7 +137,7 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="text-sm font-semibold text-white">Our Services</h4>
             <ul className="mt-3 space-y-2 text-sm">
-              {['Web Development', 'SEO', 'Graphics and 3D Designing', 'Video Editing', 'Social Media Handling', 'Web 3'].map(
+              {['Web Development', 'SEO', 'Graphics and 3D Designing', 'Video Editing', 'Social Media Handling', 'Web3'].map(
                 (item) => (
                   <li key={item}>
                     <span className="text-white/65">{item}</span>

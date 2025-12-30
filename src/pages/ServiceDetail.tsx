@@ -410,7 +410,7 @@ const servicesData: Record<string, ServiceData> = {
     ]
   },
   'web-3': {
-    title: 'Web 3',
+    title: 'Web3',
     subtitle: 'Navigate the decentralized web with blockchain solutions',
     icon: <Box size={48} />,
     overview: 'We help businesses leverage Web3 technologies including blockchain, smart contracts, NFTs, and decentralized applications. From DeFi platforms to NFT marketplaces and blockchain integration, we provide cutting-edge Web3 solutions that open new possibilities for your business.',
