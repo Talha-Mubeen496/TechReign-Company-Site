@@ -247,7 +247,9 @@ export const ContactForm: React.FC = () => {
       const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || ''
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || ''
 
-      console.log('EmailJS Config:', { publicKey, serviceId, templateId })
+      if (import.meta.env.DEV) {
+        console.log('EmailJS Config:', { publicKey, serviceId, templateId })
+      }
 
       if (!publicKey || !serviceId || !templateId) {
         throw new Error(`EmailJS configuration missing. Public Key: ${!!publicKey}, Service ID: ${!!serviceId}, Template ID: ${!!templateId}`)
@@ -263,15 +265,19 @@ export const ContactForm: React.FC = () => {
         message: form.message,
       })
 
-      console.log('EmailJS success:', result)
+      if (import.meta.env.DEV) {
+        console.log('EmailJS success:', result)
+      }
 
       setStatus('success')
       setForm({ name: '', email: '', subject: '', message: '' })
     } catch (error: any) {
-      console.error('EmailJS error details:', error)
-      console.error('Error message:', error?.message || 'Unknown error')
-      console.error('Error status:', error?.status || 'N/A')
-      console.error('Error text:', error?.text || 'N/A')
+      if (import.meta.env.DEV) {
+        console.error('EmailJS error details:', error)
+        console.error('Error message:', error?.message || 'Unknown error')
+        console.error('Error status:', error?.status || 'N/A')
+        console.error('Error text:', error?.text || 'N/A')
+      }
       setStatus('error')
     } finally {
       setTimeout(() => setStatus('idle'), 6000)
@@ -297,6 +303,7 @@ export const ContactForm: React.FC = () => {
 
   return (
     <form
+      id="contact-form"
       onSubmit={handleSubmit}
       className="space-y-4"
       noValidate

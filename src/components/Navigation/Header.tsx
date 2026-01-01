@@ -49,6 +49,13 @@ export const Header: React.FC = () => {
   }, [])
 
   const scrollTo = (id: string) => {
+    // Special handling for contact - navigate to contact page
+    if (id === 'contact') {
+      navigate('/contact')
+      setOpen(false)
+      return
+    }
+    
     // If not on home page, navigate to home first
     if (!isHomePage) {
       navigate(`/#${id}`)
@@ -160,7 +167,17 @@ export const Header: React.FC = () => {
                 {navItems.map((item) => (
                   <li key={item.id}>
                     <button
-                      onClick={() => scrollTo(item.id)}
+                      onClick={() => {
+                        if (item.id === 'hero') {
+                          if (isHomePage) {
+                            scrollTo('hero')
+                          } else {
+                            navigate('/')
+                          }
+                        } else {
+                          scrollTo(item.id)
+                        }
+                      }}
                       className={`relative px-3 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
                         active === item.id ? 'text-white' : ''
                       }`}
@@ -177,7 +194,17 @@ export const Header: React.FC = () => {
                 ))}
               </ul>
               <button
-                onClick={() => scrollTo('contact')}
+                onClick={() => {
+                  navigate('/contact#contact-form')
+                  // Small delay to ensure page loads before scrolling
+                  setTimeout(() => {
+                    const element = document.getElementById('contact-form')
+                    if (element) {
+                      const y = element.getBoundingClientRect().top + window.scrollY - 80
+                      window.scrollTo({ top: y, behavior: 'smooth' })
+                    }
+                  }, 100)
+                }}
                 className="btn-primary magnetic"
               >
                 <span className="magnetic-inner text-xs">Get Started Today</span>

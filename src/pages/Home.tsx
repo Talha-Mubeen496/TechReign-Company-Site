@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Header } from '../components/Navigation/Header'
 import { HeroSection } from '../components/Hero/HeroSection'
 import { AboutSection } from '../components/About/AboutSection'
@@ -10,6 +10,10 @@ import { TestimonialsSection } from '../components/Testimonials/TestimonialsSect
 import { ContactSection } from '../components/Contact/ContactSection'
 import { Footer } from '../components/Footer/Footer'
 export const Home: React.FC = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
+
   return (
     <div className="min-h-screen w-full overflow-x-hidden text-text-primary relative">
       {/* Background is handled by body::before in style.css - removed duplicate */}

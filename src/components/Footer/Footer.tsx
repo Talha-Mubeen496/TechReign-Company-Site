@@ -148,16 +148,30 @@ export const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-white">Contact Us</h4>
+            <h4 className="text-sm font-semibold text-white">
+              <a href="/contact" className="hover:text-white transition-colors ml-1">
+                 Contact Us
+              </a>
+              </h4>
             <div className="mt-3 space-y-1 text-sm text-white/70">
-              <p>A108 Adam Street</p>
+              {/* <p>
+                <a href="/contact" className="hover:text-white transition-colors">
+                  A108 Adam Street
+                </a>
+              </p>
               <p>New York, NY 535022</p>
-              <p>United States</p>
+              <p>United States</p> */}
               <p className="mt-2">
-                <span className="font-semibold text-white">Phone:</span> +1 5589 55488 55
+                <span className="font-semibold text-white">Phone:</span> 
+                <a href="tel:+155895548855" className="hover:text-white transition-colors ml-1">
+                  +1 5589 55488 55
+                </a>
               </p>
               <p>
-                <span className="font-semibold text-white">Email:</span> info@example.com
+                <span className="font-semibold text-white">Email:</span> 
+                <a href="mailto:info@tech-reign.com" className="hover:text-white transition-colors ml-1">
+                  info@tech-reign.com
+                </a>
               </p>
             </div>
           </div>
@@ -167,7 +181,7 @@ export const Footer: React.FC = () => {
         <div className="container-max relative z-10 flex flex-col items-center justify-between gap-3 py-4 text-xs text-white/65 md:flex-row">
           <p>© Copyright TechReign. All Rights Reserved.</p>
           <p>
-            Designed by <span className="font-semibold text-white">TechReign</span>
+            Designed and Developed by <span className="font-semibold text-white">TechReign</span>
           </p>
         </div>
       </div>

@@ -70,6 +70,7 @@ export const PortfolioSection: React.FC = () => {
                 tag={project.tag}
                 year={project.year}
                 slug={project.categorySlug}
+                category={project.category}
               />
               </motion.div>
             ))}

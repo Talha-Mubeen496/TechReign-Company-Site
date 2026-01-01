@@ -92,7 +92,7 @@ export const HeroSection: React.FC = () => {
                   <div className="mb-4 flex items-center justify-between gap-4">
                     <div>
                       <p className="text-[11px] font-medium uppercase tracking-[0.24em] text-white/70">
-                        TechReign Studio
+                        TechReign Digital Studio
                       </p>
                       <p className="mt-1 text-xs text-white/80">
                         Creative software team in a bright, collaborative space.
