@@ -56,6 +56,21 @@ export const Header: React.FC = () => {
       return
     }
     
+    // Special handling for hero - if on home page, scroll to top; if not, navigate to home
+    if (id === 'hero') {
+      if (isHomePage) {
+        // Scroll to top of home page
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        setOpen(false)
+        return
+      } else {
+        // Navigate to home page
+        navigate('/')
+        setOpen(false)
+        return
+      }
+    }
+    
     // If not on home page, navigate to home first
     if (!isHomePage) {
       navigate(`/#${id}`)

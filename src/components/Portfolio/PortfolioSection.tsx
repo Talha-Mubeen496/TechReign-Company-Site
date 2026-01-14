@@ -50,7 +50,7 @@ export const PortfolioSection: React.FC = () => {
           viewport={{ once: true, amount: 0.2 }}
           style={{ isolation: 'isolate' }}
         >
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             {filtered.map((project) => (
               <motion.div
                 key={project.id}

@@ -109,7 +109,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tag, year, slug
       {/* Project Image Section with Cycling */}
       <div className="relative h-56 overflow-hidden">
         {/* Images with crossfade animation */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           {project.images.map((image, index) => (
             <motion.img
               key={image}
@@ -122,7 +122,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tag, year, slug
                 scale: currentImageIndex === index ? 1 : 1.05
               }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ 
+                duration: 0.5,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
             />
           ))}
         </AnimatePresence>

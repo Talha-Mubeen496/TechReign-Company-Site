@@ -22,6 +22,25 @@
   animation: gradient 3s ease infinite;
 }
 
+/* Twinkle animation for Trustpilot stars */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(0.98) translateZ(0);
+  }
+}
+
+/* Prevent animation flicker */
+.animate-element {
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translateZ(0);
+}
+
 html,
 body,
 #app {

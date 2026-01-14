@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ArrowLeft, CheckCircle2, ArrowRight, Target, Users, Rocket, Zap, TrendingUp, Palette, Code, Video, Share2, Box, Search, Globe, Layers, Film, MessageSquare, Shield } from 'lucide-react'
 import { motion } from 'framer-motion'
@@ -530,8 +531,69 @@ export const ServiceDetail: React.FC = () => {
     }, 100)
   }
 
+  // Service schema for SEO
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": service.title,
+    "description": service.subtitle,
+    "provider": {
+      "@type": "Organization",
+      "name": "TechReign Digital Studio",
+      "url": "https://tech-reign.com",
+      "logo": "https://tech-reign.com/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "Pakistan"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Worldwide"
+      }
+    },
+    "serviceType": service.title,
+    "url": `https://tech-reign.com/service/${serviceSlug}`
+  }
+
+  // Breadcrumb schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://tech-reign.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://tech-reign.com#services"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": service.title,
+        "item": `https://tech-reign.com/service/${serviceSlug}`
+      }
+    ]
+  }
+
   return (
-    <div className="min-h-screen w-full overflow-x-hidden text-text-primary">
+    <>
+      <Helmet>
+        <title>{service.title} - TechReign Digital Studio</title>
+        <meta name="description" content={service.subtitle} />
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+      </Helmet>
+      <div className="min-h-screen w-full overflow-x-hidden text-text-primary">
       {/* Background wrapper */}
       {/* Background is handled by body::before in style.css - removed duplicate */}
       
@@ -761,5 +823,6 @@ export const ServiceDetail: React.FC = () => {
       
       <Footer />
     </div>
+    </>
   )
 }

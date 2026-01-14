@@ -39,15 +39,15 @@ export const MissionSection: React.FC = () => {
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <StatCounter
                 label="Years Experience"
-                end={15}
+                end={10}
               />
               <StatCounter
                 label="Projects Completed"
-                end={150}
+                end={120}
               />
               <StatCounter
                 label="Happy Clients"
-                end={240}
+                end={30}
               />
             </div>
           </motion.div>

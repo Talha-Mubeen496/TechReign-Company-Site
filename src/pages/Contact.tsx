@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { Header } from '../components/Navigation/Header'
 import { Footer } from '../components/Footer/Footer'
 import { ContactSection } from '../components/Contact/ContactSection'
@@ -11,8 +12,117 @@ export const Contact: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, [])
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Us",
+    "description": "Get in touch with TechReign for web development, SEO, and design services. Contact us via phone, email, or visit our office.",
+    "url": "https://tech-reign.com/contact",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "TechReign Digital Studio",
+      "url": "https://tech-reign.com",
+      "email": "info@tech-reign.com",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": "English"
+        },
+        {
+          "@type": "ContactPoint",
+          "email": "info@tech-reign.com",
+          "contactType": "customer service",
+          "availableLanguage": "English"
+        }
+      ]
+    }
+  }
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Contact Us",
+        "item": "https://tech-reign.com/contact"
+      }
+    ]
+  }
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What services does TechReign offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TechReign is a full-service digital studio specializing in web development, SEO, graphics & 3D design, video editing, social media management, and Web3 solutions. Every TechReign project is custom-tailored to your industry, goals, and technical requirements."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does a typical TechReign project take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TechReign project timelines vary by complexity: simple websites (4–8 weeks), complex platforms (12–24 weeks), and design projects (1–4 weeks). TechReign provides detailed project roadmaps during our initial strategy call and keeps you updated at every milestone."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What's TechReign's pricing structure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TechReign offers fixed-price packages for standard services and custom quotes for complex projects. TechReign pricing depends on scope, timeline, and specific requirements. We believe in transparent pricing—no hidden fees, ever. Contact TechReign for a detailed proposal tailored to your needs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does TechReign work with international clients?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. TechReign is a remote-first studio proudly serving clients across 15+ countries. TechReign is experienced in working across time zones and provides flexible communication channels including Slack, Zoom, and email to ensure smooth collaboration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens after I reach out to TechReign?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TechReign will respond within 24 hours to schedule a complimentary 30-minute strategy call. TechReign will discuss your goals, scope, and timeline, then provide a detailed proposal with clear next steps. No pressure, just clarity—whether we work together or not, you'll leave with actionable insights."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does TechReign offer ongoing support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. TechReign provides 3–6 months of complimentary support with all projects, plus optional retainer packages for ongoing maintenance, updates, and strategy. TechReign is committed to your long-term success, not just the launch."
+        }
+      }
+    ]
+  }
+
   return (
-    <div className="min-h-screen w-full overflow-x-hidden text-text-primary">
+    <>
+      <Helmet>
+        <title>Contact Us - TechReign Digital Studio</title>
+        <meta name="description" content="Get in touch with TechReign for web development, SEO, and design services. Contact us via phone, email, or visit our office." />
+        <script type="application/ld+json">
+          {JSON.stringify(contactSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
+      <div className="min-h-screen w-full overflow-x-hidden text-text-primary">
       <Header />
       <main className="relative w-full overflow-x-hidden pt-20 md:pt-24">
         <section className="section-padding relative min-h-[70vh] flex items-center">
@@ -244,9 +354,9 @@ export const Contact: React.FC = () => {
                     <HelpCircle size={24} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-teal transition-colors duration-300">What services do you offer?</h3>
+                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-teal transition-colors duration-300">What services does TechReign offer?</h3>
                     <p className="text-white/80 leading-relaxed text-base">
-                      We’re a full-service digital studio specializing in <span className="text-accent-teal font-medium">web development</span>, <span className="text-accent-violet font-medium">SEO</span>, <span className="text-accent-blue font-medium">graphics & 3D design</span>, <span className="text-accent-teal font-medium">video editing</span>, <span className="text-accent-violet font-medium">social media management</span>, and <span className="text-accent-blue font-medium">Web3 solutions</span>. Every project is custom-tailored to your industry, goals, and technical requirements.
+                      TechReign is a full-service digital studio specializing in <span className="text-accent-teal font-medium">web development</span>, <span className="text-accent-violet font-medium">SEO</span>, <span className="text-accent-blue font-medium">graphics & 3D design</span>, <span className="text-accent-teal font-medium">video editing</span>, <span className="text-accent-violet font-medium">social media management</span>, and <span className="text-accent-blue font-medium">Web3 solutions</span>. Every TechReign project is custom-tailored to your industry, goals, and technical requirements.
                     </p>
                   </div>
                 </div>
@@ -263,9 +373,9 @@ export const Contact: React.FC = () => {
                     <HelpCircle size={24} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-violet transition-colors duration-300">How long does a typical project take?</h3>
+                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-violet transition-colors duration-300">How long does a typical TechReign project take?</h3>
                     <p className="text-white/80 leading-relaxed text-base">
-                      Timelines vary by complexity: <span className="text-accent-teal font-medium">simple websites (4–8 weeks)</span>, <span className="text-accent-violet font-medium">complex platforms (12–24 weeks)</span>, and <span className="text-accent-blue font-medium">design projects (1–4 weeks)</span>. We provide detailed project roadmaps during our initial strategy call and keep you updated at every milestone.
+                      TechReign project timelines vary by complexity: <span className="text-accent-teal font-medium">simple websites (4–8 weeks)</span>, <span className="text-accent-violet font-medium">complex platforms (12–24 weeks)</span>, and <span className="text-accent-blue font-medium">design projects (1–4 weeks)</span>. TechReign provides detailed project roadmaps during our initial strategy call and keeps you updated at every milestone.
                     </p>
                   </div>
                 </div>
@@ -282,9 +392,9 @@ export const Contact: React.FC = () => {
                     <HelpCircle size={24} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-teal transition-colors duration-300">What’s your pricing structure?</h3>
+                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-teal transition-colors duration-300">What's TechReign's pricing structure?</h3>
                     <p className="text-white/80 leading-relaxed text-base">
-                      We offer <span className="text-accent-teal font-medium">fixed-price packages</span> for standard services and <span className="text-accent-violet font-medium">custom quotes</span> for complex projects. Pricing depends on scope, timeline, and specific requirements. We believe in transparent pricing—no hidden fees, ever. Contact us for a detailed proposal tailored to your needs.
+                      TechReign offers <span className="text-accent-teal font-medium">fixed-price packages</span> for standard services and <span className="text-accent-violet font-medium">custom quotes</span> for complex projects. TechReign pricing depends on scope, timeline, and specific requirements. We believe in transparent pricing—no hidden fees, ever. Contact TechReign for a detailed proposal tailored to your needs.
                     </p>
                   </div>
                 </div>
@@ -301,9 +411,9 @@ export const Contact: React.FC = () => {
                     <HelpCircle size={24} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-violet transition-colors duration-300">Do you work with international clients?</h3>
+                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-violet transition-colors duration-300">Does TechReign work with international clients?</h3>
                     <p className="text-white/80 leading-relaxed text-base">
-                      Absolutely. We’re a <span className="text-accent-teal font-medium">remote-first studio</span> proudly serving clients across <span className="text-accent-violet font-medium">15+ countries</span>. We’re experienced in working across time zones and provide flexible communication channels including Slack, Zoom, and email to ensure smooth collaboration.
+                      Absolutely. TechReign is a <span className="text-accent-teal font-medium">remote-first studio</span> proudly serving clients across <span className="text-accent-violet font-medium">15+ countries</span>. TechReign is experienced in working across time zones and provides flexible communication channels including Slack, Zoom, and email to ensure smooth collaboration.
                     </p>
                   </div>
                 </div>
@@ -320,9 +430,9 @@ export const Contact: React.FC = () => {
                     <HelpCircle size={24} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-teal transition-colors duration-300">What happens after I reach out?</h3>
+                    <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-teal transition-colors duration-300">What happens after I reach out to TechReign?</h3>
                     <p className="text-white/80 leading-relaxed text-base">
-                      We’ll respond <span className="text-accent-teal font-medium">within 24 hours</span> to schedule a complimentary 30-minute strategy call. We’ll discuss your goals, scope, and timeline, then provide a detailed proposal with clear next steps. No pressure, just clarity—whether we work together or not, you’ll leave with actionable insights.
+                      TechReign will respond <span className="text-accent-teal font-medium">within 24 hours</span> to schedule a complimentary 30-minute strategy call. TechReign will discuss your goals, scope, and timeline, then provide a detailed proposal with clear next steps. No pressure, just clarity—whether we work together or not, you'll leave with actionable insights.
                     </p>
                   </div>
                 </div>
@@ -341,7 +451,7 @@ export const Contact: React.FC = () => {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-violet transition-colors duration-300">Do you offer ongoing support?</h3>
                     <p className="text-white/80 leading-relaxed text-base">
-                      Yes. We provide <span className="text-accent-teal font-medium">3–6 months of complimentary support</span> with all projects, plus optional <span className="text-accent-violet font-medium">retainer packages</span> for ongoing maintenance, updates, and strategy. We’re committed to your long-term success, not just the launch.
+                      Yes. TechReign provides <span className="text-accent-teal font-medium">3–6 months of complimentary support</span> with all projects, plus optional <span className="text-accent-violet font-medium">retainer packages</span> for ongoing maintenance, updates, and strategy. TechReign is committed to your long-term success, not just the launch.
                     </p>
                   </div>
                 </div>
@@ -354,5 +464,6 @@ export const Contact: React.FC = () => {
       </main>
       <Footer />
     </div>
+    </>
   )
 }

@@ -31,6 +31,7 @@ export const Footer: React.FC = () => {
     { label: 'Home', id: 'hero', isLink: true },
     { label: 'About us', id: 'about', isLink: true },
     { label: 'Services', id: 'services', isLink: true },
+    { label: 'Blog', id: 'blog', isLink: false, route: '/blog' },
     { label: 'Terms of service', id: '', isLink: false },
     { label: 'Privacy policy', id: '', isLink: false },
   ]
@@ -126,6 +127,16 @@ export const Footer: React.FC = () => {
                     >
                       {item.label}
                     </button>
+                  ) : item.route ? (
+                    <button
+                      onClick={() => {
+                        navigate(item.route)
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                      }}
+                      className="text-white/65 transition hover:text-white cursor-pointer"
+                    >
+                      {item.label}
+                    </button>
                   ) : (
                     <span className="text-white/65">{item.label}</span>
                   )}
@@ -164,7 +175,7 @@ export const Footer: React.FC = () => {
               <p className="mt-2">
                 <span className="font-semibold text-white">Phone:</span> 
                 <a href="tel:+155895548855" className="hover:text-white transition-colors ml-1">
-                  +1 5589 55488 55
+                  +92-320-9105983
                 </a>
               </p>
               <p>

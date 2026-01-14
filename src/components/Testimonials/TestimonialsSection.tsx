@@ -5,25 +5,28 @@ import { TestimonialCard } from './TestimonialCard'
 
 const testimonials = [
   {
-    name: 'Alex Carter',
+    name: '- AWG -',
     role: 'Founder',
-    company: 'Northline Commerce',
+    company: "NFToria",
     quote:
-      'TechReign moved us from idea to launch with a clarity and pace I’ve never seen before. The site is fast, beautiful, and genuinely drives revenue.',
+      "Amazing Work of Art. They've developed NFT collection for me and minted it on Ethereum Blockchain. I'm amazed by the professionalism these guys showed and they DO DELIVER what they promise.",
+    trustpilotUrl: 'https://nz.trustpilot.com/users/695cecc96148eaf77a26db3b', // Add your Trustpilot URL here
   },
   {
-    name: 'Priya Desai',
+    name: 'Serenus Style Co',
     role: 'VP of Product',
-    company: 'Brightwave Labs',
+    company: 'ChainCanvas',
     quote:
-      'Their team feels like an extension of ours—thoughtful in strategy, sharp in design, and meticulous in implementation.',
+      "Amazing 3D work and Branding. I'm amazed by the team of designers that they have. I've never been more satisfied by the quality of work that they've provided. I've launched a merchandise a while ago and they're one of the first few people who have boosted the amount of sales by the quality of designs. Hats off to you guys!!!!",
+    trustpilotUrl: 'https://nz.trustpilot.com/users/695ce5a6d7ccaa62338b6abf', // Add your Trustpilot URL here
   },
   {
-    name: 'Daniel Kim',
+    name: 'AbatedEmperor',
     role: 'Marketing Director',
-    company: 'Aurora Health',
+    company: 'VoidLabs',
     quote:
-      'From SEO to UX, everything they shipped was grounded in data and empathy. We saw a meaningful lift in qualified leads within weeks.',
+      "I've been extremely satisfied with their services and i have been working with them on a project since June of 2025. So far, they have been very co-operative. I highly recommend anyone who's looking to avail any kind of digital service, this is an all-in-one platform for you. CHECK THEM OUT!",
+    trustpilotUrl: 'https://nz.trustpilot.com/users/64d120224cd09d0012b96add', // Add your Trustpilot URL here
   },
 ] as const
 

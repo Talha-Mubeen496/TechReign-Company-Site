@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { fadeInUp, slideInRight, staggerContainer } from '../../utils/animations'
 import { StatCard } from './StatCard'
 import { StatsBar } from './StatsBar'
+import { TrustpilotBadge } from '../Trustpilot/TrustpilotBadge'
 
 export const HeroSection: React.FC = () => {
   const { scrollY } = useScroll()
@@ -85,6 +86,9 @@ export const HeroSection: React.FC = () => {
             variants={slideInRight}
             data-reveal
           >
+            <div className="mb-8 flex justify-end">
+              <TrustpilotBadge />
+            </div>
             <div className="relative">
               <div className="glass-card relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#141B32] via-[#1C2A4A] to-[#081325] shadow-floating">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_0_0,rgba(95,108,255,0.4),transparent_50%),radial-gradient(circle_at_100%_100%,rgba(95,108,255,0.35),transparent_55%)] opacity-80" />
@@ -141,6 +145,9 @@ export const HeroSection: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
+      
+      {/* Extra spacing for visual balance */}
+      <div className="h-8 md:h-12" />
     </section>
   )
 }
