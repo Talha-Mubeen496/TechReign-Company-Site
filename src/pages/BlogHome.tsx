@@ -896,6 +896,7 @@ export default function BlogHome() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="TechReign Blog - Web Development, SEO & Design Insights" />
         <meta name="twitter:description" content="Expert insights on web development, SEO strategies, and design trends from TechReign Digital Studio. Stay updated with the latest tech industry news." />
+        <link rel="canonical" href="https://tech-reign.com/blog" />
       </Helmet>
 
       <div className="min-h-screen w-full overflow-x-hidden text-text-primary">

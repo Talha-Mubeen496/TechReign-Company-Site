@@ -18,7 +18,7 @@ export const Home: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>TechReign - Digital Studio for Business Growth</title>
+        <title>TechReign - Digital Studio for Your Business Growth</title>
         <meta name="description" content="TechReign digital studio offers web development, ecommerce, SEO, branding, digital marketing, web3 and more services to elevate your business success." />
         <meta name="keywords" content="web development, SEO services, 3D design, digital studio, TechReign, custom websites, growth strategy, Tech Reign" />
         <meta property="og:title" content="TechReign – Digital Studio" />

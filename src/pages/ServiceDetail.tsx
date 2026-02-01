@@ -493,20 +493,20 @@ const servicesData: Record<string, ServiceData> = {
 export const ServiceDetail: React.FC = () => {
   const { serviceSlug } = useParams<{ serviceSlug: string }>()
   const navigate = useNavigate()
-  
+
   // Scroll to top on page load
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [serviceSlug])
-  
+
   // Ensure page is visible immediately
   useEffect(() => {
     document.body.style.opacity = '1'
   }, [])
-  
+
   // Get service data or redirect
   const service = serviceSlug ? servicesData[serviceSlug] : null
-  
+
   if (!service) {
     return (
       <div className="min-h-screen w-full overflow-x-hidden text-text-primary flex items-center justify-center">
@@ -577,6 +577,12 @@ export const ServiceDetail: React.FC = () => {
         "position": 3,
         "name": service.title,
         "item": `https://tech-reign.com/service/${serviceSlug}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "name": "SchoolAims",
+        "item": `https://tech-reign.com/service/school-management`
       }
     ]
   }
@@ -594,235 +600,235 @@ export const ServiceDetail: React.FC = () => {
         </script>
       </Helmet>
       <div className="min-h-screen w-full overflow-x-hidden text-text-primary">
-      {/* Background wrapper */}
-      {/* Background is handled by body::before in style.css - removed duplicate */}
-      
-      <Header />
-      
-      <main className="relative w-full overflow-x-hidden pt-20 md:pt-24">
-        {/* Hero Section */}
-        <section className="section-padding">
-          <div className="container-max">
-            <div>
-              <button
-                onClick={() => {
-                  navigate('/#services')
-                  // Wait for navigation, then scroll
-                  setTimeout(() => {
-                    const el = document.getElementById('services')
-                    if (el) {
-                      const y = el.getBoundingClientRect().top + window.scrollY - 80
-                      window.scrollTo({ top: y, behavior: 'smooth' })
-                    }
-                  }, 100)
-                }}
-                className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary transition hover:text-white mb-8"
-              >
-                <ArrowLeft size={16} />
-                Back to Services
-              </button>
-            </div>
+        {/* Background wrapper */}
+        {/* Background is handled by body::before in style.css - removed duplicate */}
 
-            <div className="mx-auto max-w-4xl text-center">
-              <div className="mb-6 inline-flex items-center justify-center rounded-2xl bg-gradient-to-br from-accent-blue to-accent-violet p-4 text-white shadow-soft">
-                {service.icon}
+        <Header />
+
+        <main className="relative w-full overflow-x-hidden pt-20 md:pt-24">
+          {/* Hero Section */}
+          <section className="section-padding">
+            <div className="container-max">
+              <div>
+                <button
+                  onClick={() => {
+                    navigate('/#services')
+                    // Wait for navigation, then scroll
+                    setTimeout(() => {
+                      const el = document.getElementById('services')
+                      if (el) {
+                        const y = el.getBoundingClientRect().top + window.scrollY - 80
+                        window.scrollTo({ top: y, behavior: 'smooth' })
+                      }
+                    }, 100)
+                  }}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-text-secondary transition hover:text-white mb-8"
+                >
+                  <ArrowLeft size={16} />
+                  Back to Services
+                </button>
               </div>
-              <p className="heading-label mb-3">Service Details</p>
-              <h1 className="primary-heading">{service.title}</h1>
-              <p className="mt-4 text-lg leading-relaxed text-white/80 md:text-xl">
-                {service.subtitle}
-              </p>
-              <button
-                onClick={scrollToContact}
-                className="btn-primary mt-8"
-              >
-                <span>Get Started</span>
-              </button>
-            </div>
-          </div>
-        </section>
 
-        {/* Overview Section */}
-        <section className="section-padding">
-          <div className="container-max">
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="mx-auto max-w-3xl"
-            >
-              <div className="glass-card p-8 md:p-12">
-                <h2 className="secondary-heading mb-4">Overview</h2>
-                <p className="text-white/80 leading-relaxed">
-                  {service.overview}
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="section-padding">
-          <div className="container-max">
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
-              className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
-            >
-              {service.features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="glass-card p-6"
-                >
-                  <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-accent-blue to-accent-violet p-3 text-white">
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                  <p className="text-sm text-white/80">{feature.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Process Section */}
-        <section className="section-padding">
-          <div className="container-max">
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="mx-auto max-w-3xl text-center mb-12"
-            >
-              <p className="heading-label mb-3">Our Process</p>
-              <h2 className="secondary-heading">How We Work</h2>
-            </motion.div>
-
-            <div className="mx-auto max-w-4xl space-y-6">
-              {service.process.map((step, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="glass-card p-6 md:p-8"
-                >
-                  <div className="flex items-start gap-6">
-                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-blue to-accent-violet text-lg font-semibold text-white">
-                      {step.step}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
-                      <p className="text-white/80">{step.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Use Cases Section */}
-        <section className="section-padding">
-          <div className="container-max">
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="mx-auto max-w-3xl text-center mb-12"
-            >
-              <p className="heading-label mb-3">Perfect For</p>
-              <h2 className="secondary-heading">Who This Service Is Ideal For</h2>
-            </motion.div>
-
-            <div className="mx-auto max-w-4xl grid gap-6 md:grid-cols-3">
-              {service.useCases.map((useCase, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="glass-card p-6"
-                >
-                  <CheckCircle2 className="mb-4 text-accent-teal" size={24} />
-                  <h3 className="text-lg font-semibold text-white mb-2">{useCase.title}</h3>
-                  <p className="text-sm text-white/80">{useCase.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="section-padding">
-          <div className="container-max">
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="mx-auto max-w-3xl text-center mb-12"
-            >
-              <p className="heading-label mb-3">Questions?</p>
-              <h2 className="secondary-heading">Frequently Asked Questions</h2>
-            </motion.div>
-
-            <div className="mx-auto max-w-3xl space-y-4">
-              {service.faqs.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="glass-card p-6"
-                >
-                  <h3 className="text-lg font-semibold text-white mb-2">{faq.question}</h3>
-                  <p className="text-white/80">{faq.answer}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="section-padding">
-          <div className="container-max">
-            <motion.div
-              variants={fadeInUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              className="mx-auto max-w-3xl"
-            >
-              <div className="glass-card p-12 text-center">
-                <h2 className="secondary-heading mb-4">Ready to Get Started?</h2>
-                <p className="text-white/80 mb-8 max-w-xl mx-auto">
-                  Let's discuss how our {service.title.toLowerCase()} service can help your business grow.
+              <div className="mx-auto max-w-4xl text-center">
+                <div className="mb-6 inline-flex items-center justify-center rounded-2xl bg-gradient-to-br from-accent-blue to-accent-violet p-4 text-white shadow-soft">
+                  {service.icon}
+                </div>
+                <p className="heading-label mb-3">Service Details</p>
+                <h1 className="primary-heading">{service.title}</h1>
+                <p className="mt-4 text-lg leading-relaxed text-white/80 md:text-xl">
+                  {service.subtitle}
                 </p>
                 <button
                   onClick={scrollToContact}
-                  className="btn-primary"
+                  className="btn-primary mt-8"
                 >
-                  <span>Contact Us</span>
-                  <ArrowRight size={18} />
+                  <span>Get Started</span>
                 </button>
               </div>
-            </motion.div>
-          </div>
-        </section>
-      </main>
-      
-      <Footer />
-    </div>
+            </div>
+          </section>
+
+          {/* Overview Section */}
+          <section className="section-padding">
+            <div className="container-max">
+              <motion.div
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="mx-auto max-w-3xl"
+              >
+                <div className="glass-card p-8 md:p-12">
+                  <h2 className="secondary-heading mb-4">Overview</h2>
+                  <p className="text-white/80 leading-relaxed">
+                    {service.overview}
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Features Section */}
+          <section className="section-padding">
+            <div className="container-max">
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+              >
+                {service.features.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    className="glass-card p-6"
+                  >
+                    <div className="mb-4 inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-accent-blue to-accent-violet p-3 text-white">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                    <p className="text-sm text-white/80">{feature.description}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Process Section */}
+          <section className="section-padding">
+            <div className="container-max">
+              <motion.div
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="mx-auto max-w-3xl text-center mb-12"
+              >
+                <p className="heading-label mb-3">Our Process</p>
+                <h2 className="secondary-heading">How We Work</h2>
+              </motion.div>
+
+              <div className="mx-auto max-w-4xl space-y-6">
+                {service.process.map((step, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    className="glass-card p-6 md:p-8"
+                  >
+                    <div className="flex items-start gap-6">
+                      <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-accent-blue to-accent-violet text-lg font-semibold text-white">
+                        {step.step}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                        <p className="text-white/80">{step.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Use Cases Section */}
+          <section className="section-padding">
+            <div className="container-max">
+              <motion.div
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="mx-auto max-w-3xl text-center mb-12"
+              >
+                <p className="heading-label mb-3">Perfect For</p>
+                <h2 className="secondary-heading">Who This Service Is Ideal For</h2>
+              </motion.div>
+
+              <div className="mx-auto max-w-4xl grid gap-6 md:grid-cols-3">
+                {service.useCases.map((useCase, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    className="glass-card p-6"
+                  >
+                    <CheckCircle2 className="mb-4 text-accent-teal" size={24} />
+                    <h3 className="text-lg font-semibold text-white mb-2">{useCase.title}</h3>
+                    <p className="text-sm text-white/80">{useCase.description}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section className="section-padding">
+            <div className="container-max">
+              <motion.div
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="mx-auto max-w-3xl text-center mb-12"
+              >
+                <p className="heading-label mb-3">Questions?</p>
+                <h2 className="secondary-heading">Frequently Asked Questions</h2>
+              </motion.div>
+
+              <div className="mx-auto max-w-3xl space-y-4">
+                {service.faqs.map((faq, index) => (
+                  <motion.div
+                    key={index}
+                    variants={fadeInUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                    className="glass-card p-6"
+                  >
+                    <h3 className="text-lg font-semibold text-white mb-2">{faq.question}</h3>
+                    <p className="text-white/80">{faq.answer}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* CTA Section */}
+          <section className="section-padding">
+            <div className="container-max">
+              <motion.div
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="mx-auto max-w-3xl"
+              >
+                <div className="glass-card p-12 text-center">
+                  <h2 className="secondary-heading mb-4">Ready to Get Started?</h2>
+                  <p className="text-white/80 mb-8 max-w-xl mx-auto">
+                    Let's discuss how our {service.title.toLowerCase()} service can help your business grow.
+                  </p>
+                  <button
+                    onClick={scrollToContact}
+                    className="btn-primary"
+                  >
+                    <span>Contact Us</span>
+                    <ArrowRight size={18} />
+                  </button>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+        </main>
+
+        <Footer />
+      </div>
     </>
   )
 }

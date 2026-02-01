@@ -192,7 +192,7 @@ export const Footer: React.FC = () => {
         <div className="container-max relative z-10 flex flex-col items-center justify-between gap-3 py-4 text-xs text-white/65 md:flex-row">
           <p>© Copyright TechReign. All Rights Reserved.</p>
           <p>
-            Designed and Developed by <span className="font-semibold text-white">TechReign</span>
+            Designed and Developed by <span className="font-semibold text-white">TechReign - Digital Studio</span>
           </p>
         </div>
       </div>

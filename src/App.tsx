@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { HelmetProvider } from 'react-helmet-async'
 import { Home } from './pages/Home'
 import { ServiceDetail } from './pages/ServiceDetail'
+import { SchoolManagement } from './pages/SchoolManagement'
 import { PortfolioDetail } from './pages/PortfolioDetail'
 import { Contact } from './pages/Contact'
 import BlogHome from './pages/BlogHome'
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/service/school-management" element={<SchoolManagement />} />
             <Route path="/service/:serviceSlug" element={<ServiceDetail />} />
             <Route path="/portfolio/:projectSlug" element={<PortfolioDetail />} />
             <Route path="/contact" element={<Contact />} />

@@ -1256,6 +1256,7 @@ export default function BlogArticle() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.excerpt} />
+        <link rel="canonical" href={`https://tech-reign.com/blog/${post.slug}`} />
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
         </script>

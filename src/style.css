@@ -9,9 +9,11 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -24,10 +26,13 @@
 
 /* Twinkle animation for Trustpilot stars */
 @keyframes twinkle {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
     transform: scale(1) translateZ(0);
   }
+
   50% {
     opacity: 0.85;
     transform: scale(0.98) translateZ(0);
@@ -59,12 +64,12 @@ body,
 
 body {
   position: relative;
-  background: transparent; /* Transparent so fixed ::before pseudo-element shows through */
+  background: transparent;
+  /* Transparent so fixed ::before pseudo-element shows through */
   color: #e4e8ff;
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  overscroll-behavior-y: none;
   /* GPU acceleration moved to #app to preserve fixed positioning for cursor */
 }
 
@@ -93,9 +98,12 @@ body::before {
 
 /* Animated gradient background - subtle movement */
 @keyframes gradientShift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 0%, 100% 100%, 0% 0%;
   }
+
   50% {
     background-position: 20% 20%, 80% 80%, 0% 0%;
   }
@@ -193,6 +201,7 @@ body::before {
 }
 
 @media (max-width: 768px) {
+
   .cursor-dot,
   .cursor-dot-outline {
     display: none;
@@ -214,18 +223,18 @@ body::before {
   filter: blur(120px);
   opacity: 0.35;
   z-index: 0;
-  }
+}
 
 .section-sheen::before {
   background: radial-gradient(circle, rgba(95, 108, 255, 0.35), transparent 55%);
-  }
+}
 
 .section-sheen::after {
   background: radial-gradient(circle, rgba(95, 108, 255, 0.3), transparent 60%);
   transform: translate(35%, 20%);
-  }
+}
 
-.section-sheen > * {
+.section-sheen>* {
   position: relative;
   z-index: 1;
 }
@@ -248,7 +257,6 @@ main {
   width: 100%;
   min-height: 100vh;
   background: transparent;
-  contain: layout style paint;
   will-change: scroll-position;
 }
 
@@ -294,6 +302,7 @@ main {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -325,7 +334,7 @@ button,
 a,
 [role="button"] {
   transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1),
-              opacity 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+    opacity 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
   will-change: transform;
 }
 
@@ -350,6 +359,7 @@ a:active,
 
 /* Mobile touch optimizations */
 @media (max-width: 768px) {
+
   /* Better touch targets */
   button,
   a,
@@ -366,13 +376,15 @@ a:active,
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Prevent pull-to-refresh on mobile */
-  body {
-    overscroll-behavior-y: contain;
-  }
-
   /* Better text selection */
-  p, span, h1, h2, h3, h4, h5, h6 {
+  p,
+  span,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     -webkit-tap-highlight-color: transparent;
   }
 }
@@ -386,6 +398,7 @@ a:active,
 
 /* Swipe gestures for mobile */
 @media (hover: none) and (pointer: coarse) {
+
   /* Better touch feedback */
   button,
   a,
@@ -396,6 +409,7 @@ a:active,
 
 /* Reduce motion for users who prefer it */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -404,7 +418,7 @@ a:active,
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   .motion-div,
   [data-framer-component] {
     transform: none !important;
@@ -413,13 +427,24 @@ a:active,
 
 /* Shake animation for form validation errors */
 @keyframes shake {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateX(0);
   }
-  10%, 30%, 50%, 70%, 90% {
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
     transform: translateX(-4px);
   }
-  20%, 40%, 60%, 80% {
+
+  20%,
+  40%,
+  60%,
+  80% {
     transform: translateX(4px);
   }
 }
@@ -433,4 +458,3 @@ a:active,
     animation: none;
   }
 }
-
