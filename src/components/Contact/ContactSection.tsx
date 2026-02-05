@@ -57,7 +57,7 @@ export const ContactSection: React.FC = () => {
                     <Phone size={18} className="text-white" />
                   </div>
                   <span className="text-2xl font-bold text-white tracking-wide">
-                    0320 9105983
+                    0320-9105983
                   </span>
                 </a>
               </div>

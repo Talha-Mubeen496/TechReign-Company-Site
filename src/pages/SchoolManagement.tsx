@@ -462,6 +462,20 @@ export const SchoolManagement: React.FC = () => {
                             </div>
                         </div>
 
+                        {/* Mobile Menu Backdrop */}
+                        <AnimatePresence>
+                            {mobileMenuOpen && (
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="fixed inset-0 bg-[#0f2a4a]/80 backdrop-blur-md z-40 lg:hidden"
+                                    style={{ top: '140px' }}
+                                />
+                            )}
+                        </AnimatePresence>
+
                         {/* Mobile Menu - Smooth Expand */}
                         <AnimatePresence>
                             {mobileMenuOpen && (
@@ -469,7 +483,7 @@ export const SchoolManagement: React.FC = () => {
                                     initial={{ opacity: 0, height: 0 }}
                                     animate={{ opacity: 1, height: 'auto' }}
                                     exit={{ opacity: 0, height: 0 }}
-                                    className="lg:hidden border-t border-gray-100 bg-white/95 backdrop-blur-xl shadow-inner scroll-smooth"
+                                    className="lg:hidden border-t border-gray-100 bg-white/95 backdrop-blur-xl shadow-inner scroll-smooth relative z-50"
                                 >
                                     <div className="px-6 py-8 space-y-4">
                                         <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); setActiveSection('home'); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 text-indigo-700 bg-indigo-50/50 rounded-xl font-semibold border border-indigo-100">Home</button>
@@ -478,12 +492,14 @@ export const SchoolManagement: React.FC = () => {
                                         <button onClick={() => scrollToSection('why-choose-us')} className="w-full text-left px-4 py-3 text-gray-600 font-medium hover:text-indigo-600 hover:bg-gray-50 rounded-xl transition-colors">About</button>
                                         <button onClick={() => { scrollToContact(); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 text-gray-600 font-medium hover:text-indigo-600 hover:bg-gray-50 rounded-xl transition-colors">Contact</button>
 
-                                        <button
-                                            onClick={() => { scrollToContact(); setMobileMenuOpen(false); }}
-                                            className="w-full mt-4 px-6 py-4 bg-gradient-to-r from-[#1e4e7e] to-[#2c6aa8] text-white rounded-xl font-bold shadow-lg shadow-indigo-200 active:scale-95 transition-all text-center"
+                                        <a
+                                            href="https://white-island-0f4bfca1e.1.azurestaticapps.net/auth/login"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-full mt-4 px-6 py-4 bg-gradient-to-r from-[#1e4e7e] to-[#2c6aa8] text-white rounded-xl font-bold shadow-lg shadow-indigo-200 active:scale-95 transition-all text-center block"
                                         >
-                                            Book Your Free Demo
-                                        </button>
+                                            Live Preview
+                                        </a>
                                     </div>
                                 </motion.div>
                             )}
@@ -530,14 +546,9 @@ export const SchoolManagement: React.FC = () => {
                                     </p>
 
                                     <div className="flex flex-wrap gap-4">
-                                        <a
-                                            href="https://tech-reign.com/#contact"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="px-8 py-3 bg-white text-indigo-600 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg inline-block text-center"
-                                        >
+                                        <button onClick={scrollToContact} className="px-8 py-3 bg-white text-indigo-600 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg">
                                             Get Started
-                                        </a>
+                                        </button>
                                         <a
                                             href="https://white-island-0f4bfca1e.1.azurestaticapps.net/auth/login"
                                             target="_blank"
@@ -1169,7 +1180,7 @@ export const SchoolManagement: React.FC = () => {
                                             <Phone size={24} className="text-white" />
                                         </div>
                                         <span className="text-3xl md:text-4xl font-bold text-white tracking-wide">
-                                            0320 9105983
+                                            0320-9105983
                                         </span>
                                     </a>
                                 </div>
