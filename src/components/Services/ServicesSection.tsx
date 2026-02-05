@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Code, TrendingUp, Palette, Video, Share2, Box } from 'lucide-react'
+import { Code, TrendingUp, Palette, Video, Share2, Box, GraduationCap } from 'lucide-react'
 import { ServiceCard } from './ServiceCard'
 import { fadeInUp, staggerContainer } from '../../utils/animations'
 
@@ -41,7 +41,13 @@ const services = [
     description: 'Navigate the decentralized web with blockchain solutions, smart contracts, NFT development, and Web3 integration services.',
     serviceSlug: 'web-3',
   },
-]
+  {
+    icon: <GraduationCap size={20} />,
+    title: 'SchoolAims',
+    description: 'Transform your institution with our powerful AI-driven school management system. Automate attendance, fees, and exams effortlessly.',
+    serviceSlug: 'school-management',
+  },
+];
 
 export const ServicesSection: React.FC = () => {
   return (
@@ -69,16 +75,25 @@ export const ServicesSection: React.FC = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {services.map((service) => (
-            <motion.div key={service.serviceSlug} variants={fadeInUp}>
-              <ServiceCard
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-                serviceSlug={service.serviceSlug}
-              />
-            </motion.div>
-          ))}
+          {services.map((service, index) => {
+            const isLast = index === services.length - 1
+            return (
+              <motion.div
+                key={service.serviceSlug}
+                variants={fadeInUp}
+                className={`${isLast ? 'md:col-span-2 lg:col-span-1 lg:col-start-2 flex justify-center' : ''}`}
+              >
+                <div className={isLast ? 'w-full max-w-md lg:max-w-none' : 'w-full'}>
+                  <ServiceCard
+                    icon={service.icon}
+                    title={service.title}
+                    description={service.description}
+                    serviceSlug={service.serviceSlug}
+                  />
+                </div>
+              </motion.div>
+            )
+          })}
         </motion.div>
       </div>
     </section>

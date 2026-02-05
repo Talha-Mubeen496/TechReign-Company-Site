@@ -32,7 +32,7 @@ export const SchoolManagement: React.FC = () => {
     const faqs = [
         {
             question: "What is SchoolAims",
-            answer: "SchoolAims is a complete school management system designed for schools and colleges. It helps automate student records, attendance tracking, fee collection, exam management, and parent communication. Our cloud-based platform makes school administration 70% more efficient while keeping costs affordable at just Rs. 10,000 per month."
+            answer: "SchoolAims is a complete school management system designed for schools and colleges. It helps automate student records, attendance tracking, fee collection, exam management, and parent communication. Our cloud-based platform makes school administration 70% more efficient while keeping costs affordable at just Rs. 20,000 per month."
         },
         {
             question: "How does SchoolAims help schools?",
@@ -40,11 +40,11 @@ export const SchoolManagement: React.FC = () => {
         },
         {
             question: "Is SchoolAims suitable for small schools?",
-            answer: "Yes! SchoolAims is perfect for schools of all sizes - from small institutions with 50 students to large campuses with 5000+ students. Our pricing model (Rs. 10,000 per month) makes it affordable for small schools while offering enterprise-level features that grow with your institution."
+            answer: "Yes! SchoolAims is perfect for schools of all sizes - from small institutions with 50 students to large campuses with 5000+ students. Our pricing model (Rs. 20,000 per month) makes it affordable for small schools while offering enterprise-level features that grow with your institution."
         },
         {
             question: "How much does SchoolAims cost?",
-            answer: "SchoolAims costs only Rs. 10,000 per month. This includes all features - student management, attendance tracking, fee collection, parent portal, exam management, and unlimited users. There are no hidden charges. For a school with 200 students, the total monthly cost is Rs. 50,000."
+            answer: "SchoolAims costs only Rs. 20,000 per month. This includes all features - student management, attendance tracking, fee collection, parent portal, exam management, and unlimited users. There are no hidden charges. For a school with 200 students, the total monthly cost is Rs. 50,000."
         },
         {
             question: "What modules are included in SchoolAims?",
@@ -224,7 +224,7 @@ export const SchoolManagement: React.FC = () => {
     const pricingPlans = [
         {
             name: 'Essential',
-            price: { monthly: 'Rs. 10,000', yearly: 'Rs. 1,00,000' },
+            price: { monthly: 'Rs. 20,000', yearly: 'Rs. 2,00,000' },
             description: 'For small schools getting started',
             features: [
                 'Manage Students up to 500',
@@ -236,7 +236,7 @@ export const SchoolManagement: React.FC = () => {
         },
         {
             name: 'Standard',
-            price: { monthly: 'Rs. 20,000', yearly: 'Rs. 2,00,000' },
+            price: { monthly: 'Rs. 30,000', yearly: 'Rs. 3,00,000' },
             description: 'For growing institutions',
             features: [
                 'Manage Students up to 1000',
@@ -248,7 +248,7 @@ export const SchoolManagement: React.FC = () => {
         },
         {
             name: 'Enterprise',
-            price: { monthly: 'Rs. 30,000', yearly: 'Rs. 3,00,000' },
+            price: { monthly: 'Rs. 40,000', yearly: 'Rs. 4,00,000' },
             description: 'For large campuses & universities',
             features: [
                 'Manage Students up to 3000',
@@ -439,13 +439,17 @@ export const SchoolManagement: React.FC = () => {
                                 {/* CTA Button - Modern Gradient & Glow */}
                                 <div className="hidden lg:block relative group">
                                     <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-200"></div>
-                                    <button
-                                        onClick={scrollToContact}
-                                        className="relative flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-[#1e4e7e] to-[#2c6aa8] hover:from-[#163a5f] hover:to-[#22558a] text-white rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-sm tracking-wide overflow-hidden"
+                                    <a
+                                        href="https://white-island-0f4bfca1e.1.azurestaticapps.net/auth/login"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="relative flex items-center gap-2 px-7 py-3 bg-gradient-to-r from-[#1e4e7e] to-[#2c6aa8] hover:from-[#163a5f] hover:to-[#22558a] text-white rounded-xl font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 text-sm tracking-wide overflow-hidden animate-pulse-glow"
                                     >
-                                        <span className="relative z-10">Book a Free Demo</span>
+                                        <span className="relative z-10">
+                                            Live Preview
+                                        </span>
                                         <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                                    </button>
+                                    </a>
                                 </div>
 
                                 {/* Mobile Menu Button - Stylish */}
@@ -526,12 +530,22 @@ export const SchoolManagement: React.FC = () => {
                                     </p>
 
                                     <div className="flex flex-wrap gap-4">
-                                        <button className="px-8 py-3 bg-white text-indigo-600 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg">
-                                            Get Started Free
-                                        </button>
-                                        <button className="px-8 py-3 border-2 border-white text-white rounded-lg font-bold hover:bg-white/10 transition">
-                                            Watch Demo
-                                        </button>
+                                        <a
+                                            href="https://tech-reign.com/#contact"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-8 py-3 bg-white text-indigo-600 rounded-lg font-bold hover:bg-gray-100 transition shadow-lg inline-block text-center"
+                                        >
+                                            Get Started
+                                        </a>
+                                        <a
+                                            href="https://white-island-0f4bfca1e.1.azurestaticapps.net/auth/login"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="px-8 py-3 border-2 border-white text-white rounded-lg font-bold hover:bg-white/10 transition inline-block text-center"
+                                        >
+                                            Live Preview
+                                        </a>
                                     </div>
                                 </motion.div>
 
@@ -975,12 +989,17 @@ export const SchoolManagement: React.FC = () => {
                                             ))}
                                         </ul>
 
-                                        <button className={`w-full py-3 rounded-xl font-bold transition-transform hover:scale-105 active:scale-95 ${plan.recommended
-                                            ? 'bg-amber-400 text-amber-900 hover:bg-amber-300'
-                                            : 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100'
-                                            }`}>
+                                        <a
+                                            href="https://tech-reign.com/#contact"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={`w-full py-3 rounded-xl font-bold transition-transform hover:scale-105 active:scale-95 inline-block text-center ${plan.recommended
+                                                ? 'bg-amber-400 text-amber-900 hover:bg-amber-300'
+                                                : 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100'
+                                                }`}
+                                        >
                                             Choose {plan.name}
-                                        </button>
+                                        </a>
                                     </motion.div>
                                 ))}
                             </div>
@@ -1135,16 +1154,35 @@ export const SchoolManagement: React.FC = () => {
                                 viewport={{ once: true }}
                             >
                                 <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Institution?</h2>
-                                <p className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed">
+                                <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
                                     With SchoolAims, you’re not just managing a school—you’re building a brighter future for education.
                                 </p>
+
+                                {/* Prominent Phone Number */}
+                                <div className="mb-10">
+                                    <p className="text-sm text-white/60 mb-3 uppercase tracking-wider font-semibold">Call Us Now</p>
+                                    <a
+                                        href="tel:+923209105983"
+                                        className="inline-flex items-center gap-3 px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-2xl hover:bg-white/20 hover:border-white/50 transition-all duration-300 group"
+                                    >
+                                        <div className="p-2 bg-[#6366f1] rounded-full group-hover:scale-110 transition-transform">
+                                            <Phone size={24} className="text-white" />
+                                        </div>
+                                        <span className="text-3xl md:text-4xl font-bold text-white tracking-wide">
+                                            0320 9105983
+                                        </span>
+                                    </a>
+                                </div>
+
                                 <div className="flex justify-center">
-                                    <button
-                                        onClick={scrollToContact}
-                                        className="px-10 py-4 bg-[#6366f1] hover:bg-[#5850ec] text-white rounded-lg font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-indigo-500/25 active:scale-[0.98]"
+                                    <a
+                                        href="https://tech-reign.com/#contact"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="px-10 py-4 bg-[#6366f1] hover:bg-[#5850ec] text-white rounded-lg font-semibold text-lg transition-all duration-300 shadow-xl hover:shadow-indigo-500/25 active:scale-[0.98] inline-block text-center"
                                     >
                                         Get Started Today
-                                    </button>
+                                    </a>
                                 </div>
                             </motion.div>
                         </div>

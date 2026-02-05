@@ -1,5 +1,5 @@
 import React from 'react'
-import { MessageCircle } from 'lucide-react'
+import { MessageCircle, Phone } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { fadeInUp, slideInLeft, slideInRight } from '../../utils/animations'
 import { ContactForm } from './ContactForm'
@@ -18,8 +18,8 @@ export const ContactSection: React.FC = () => {
           <p className="heading-label mb-3">Contact</p>
           <h2 className="secondary-heading">Let&apos;s Connect</h2>
           <p className="mt-4 text-sm leading-relaxed text-white/80 md:text-base">
-            Ready to bring your vision to life? We're here to listen and help. Whether you have a 
-            project in mind, questions about our services, or just want to explore possibilities, 
+            Ready to bring your vision to life? We're here to listen and help. Whether you have a
+            project in mind, questions about our services, or just want to explore possibilities,
             drop us a message. Let's start a conversation about your next big idea.
           </p>
         </motion.div>
@@ -30,7 +30,7 @@ export const ContactSection: React.FC = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.4 }}
-            className="group relative flex flex-col justify-between overflow-hidden rounded-[36px] border border-white/15 bg-gradient-to-br from-white/10 via-transparent to-white/5 p-card shadow-floating ring-1 ring-white/5 transition hover:-translate-y-1 hover:bg-gradient-to-br hover:from-white/20"
+            className="group relative flex flex-col justify-between overflow-hidden rounded-[36px] border border-white/15 bg-gradient-to-br from-white/10 via-transparent to-white/5 p-card shadow-floating ring-1 ring-white/5"
           >
             <div className="pointer-events-none absolute inset-0 opacity-60">
               <div className="absolute -left-10 top-0 h-40 w-40 rounded-full bg-gradient-to-br from-accent-blue/40 to-accent-violet/30 blur-[120px]" />
@@ -45,10 +45,23 @@ export const ContactSection: React.FC = () => {
                 We&apos;re here to discuss your vision and explore how we can bring it to life
                 together. Share where you&apos;re headed—TechReign will help you get there.
               </p>
+
+              {/* Prominent Phone Number */}
+              <div className="mt-6">
+                <p className="text-xs text-white/50 mb-2 uppercase tracking-wider font-semibold">Call Us Now</p>
+                <a
+                  href="tel:+923209105983"
+                  className="inline-flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/30 rounded-xl hover:bg-white/20 hover:border-white/50 transition-all duration-300 group"
+                >
+                  <div className="p-1.5 bg-gradient-to-br from-accent-teal to-accent-blue rounded-full group-hover:scale-110 transition-transform">
+                    <Phone size={18} className="text-white" />
+                  </div>
+                  <span className="text-2xl font-bold text-white tracking-wide">
+                    0320 9105983
+                  </span>
+                </a>
+              </div>
             </div>
-            <button className="mt-6 inline-flex w-max items-center justify-center rounded-full border border-white/30 bg-white/10 px-8 py-2 text-xs font-semibold text-white/80 shadow-soft transition hover:border-white/60 hover:text-white">
-              Email Us
-            </button>
           </motion.div>
 
           <motion.div
