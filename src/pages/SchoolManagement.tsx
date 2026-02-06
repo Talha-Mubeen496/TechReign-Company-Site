@@ -981,6 +981,7 @@ export const SchoolManagement: React.FC = () => {
                                             <h3 className={`text-xl font-bold mb-4 ${plan.recommended ? 'text-white' : 'text-gray-800'}`}>
                                                 {plan.name}
                                             </h3>
+                                            <p className={`text-xs font-medium mb-1 ${plan.recommended ? 'text-sky-100' : 'text-gray-500'}`}>starting from</p>
                                             <div className="flex items-baseline justify-center gap-1">
                                                 <span className={`text-4xl font-bold ${plan.recommended ? 'text-white' : 'text-gray-900'}`}>
                                                     {billingCycle === 'monthly' ? plan.price.monthly : plan.price.yearly}
@@ -994,8 +995,8 @@ export const SchoolManagement: React.FC = () => {
                                         <ul className="space-y-4 mb-8">
                                             {plan.features.map((feature, i) => (
                                                 <li key={i} className="flex items-center gap-3">
-                                                    <CheckCircle2 size={18} className={`${plan.recommended ? 'text-sky-300' : 'text-indigo-600'} shrink-0`} />
-                                                    <span className={`text-sm ${plan.recommended ? 'text-sky-100' : 'text-gray-600'}`}>{feature}</span>
+                                                        <CheckCircle2 size={18} className={`${plan.recommended ? 'text-sky-300' : 'text-indigo-600'} shrink-0`} />
+                                                        <span className={`text-sm ${plan.recommended ? 'text-sky-100' : 'text-gray-600'}`}>{feature}</span>
                                                 </li>
                                             ))}
                                         </ul>
