@@ -1,15 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import { ArrowLeft, Image as ImageIcon, X, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize2 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Header } from '../components/Navigation/Header'
 import { Footer } from '../components/Footer/Footer'
 
 // Category data with images - Add your image paths here
-const categoryData: Record<string, { title: string; tag: string; images: string[] }> = {
+const categoryData: Record<string, { title: string; tag: string; description: string; images: string[] }> = {
   'logo-design': {
     title: 'Graphics and 3D',
     tag: 'GRAPHICS AND 3D',
+    description: 'Explore TechReign\'s graphics and 3D design portfolio — logos, illustrations, and visual artwork crafted for brands worldwide.',
     images: ['/graphics/img1.jpeg', '/graphics/img2.jpeg', '/graphics/img3.jpeg' 
       , '/graphics/img4.jpeg', '/graphics/img15.jpg' , '/graphics/img6.jpeg',  
       '/graphics/img18.jpg', '/graphics/img10.jpg', '/graphics/img11.jpg', '/graphics/img12.jpg',
@@ -20,6 +22,7 @@ const categoryData: Record<string, { title: string; tag: string; images: string[
   'web-development': {
     title: 'Web Development',
     tag: 'WEB DEVELOPMENT',
+    description: 'Discover TechReign\'s web development projects — responsive, fast, and modern websites built for businesses worldwide.',
     images: ['/web/web1.webp','/web/1.jpg','/web/2.jpg','/web/3.jpg','/web/4.jpg','/web/5.jpg',
     '/web/6.jpg','/web/7.jpg','/web/8.jpg','/web/9.jpg','/web/10.jpg','/web/11.jpg','/web/12.jpg',
     '/web/13.jpg', '/web/14.jpg','/web/15.jpg', '/web/16.jpg', '/web/17.jpg', '/web/18.jpg', '/web/19.jpg',
@@ -29,6 +32,7 @@ const categoryData: Record<string, { title: string; tag: string; images: string[
   'branding': {
     title: 'Branding',
     tag: 'BRANDING',
+    description: 'Explore TechReign\'s branding portfolio — complete brand identity systems and design excellence for leading companies.',
     images: ['/branding/img1.jpg','/branding/img2.jpg','/branding/img3.jpg',
       '/branding/img4.jpg','/branding/img5.jpg','/branding/img6.jpg', '/branding/img7.jpg', '/branding/img8.jpg',
     '/branding/img9.jpg' ,'/branding/img10.jpg' , '/branding/img11.jpg' , '/branding/img12.jpg', '/branding/img13.png'], 
@@ -36,6 +40,7 @@ const categoryData: Record<string, { title: string; tag: string; images: string[
   'web3': {
     title: 'Web3',
     tag: 'WEB3',
+    description: 'View TechReign\'s Web3 and blockchain design projects — innovative digital experiences for the decentralized web.',
     images: ['/web3/1.jpg', '/web3/2.webp', '/web3/3.webp', '/web3/4.webp', '/web3/5.webp', '/web3/6.webp', '/web3/7.webp', '/web3/8.webp', '/web3/9.webp'], 
   },
 }
@@ -187,6 +192,17 @@ export const PortfolioDetail: React.FC = () => {
 
   if (!category) {
     return (
+      <>
+        <Helmet>
+          <title>Portfolio - TechReign Digital Studio</title>
+          <meta name="description" content="Portfolio gallery not found. View TechReign's web development, design, and branding projects." />
+          <link rel="canonical" href="https://tech-reign.com" />
+          <meta property="og:title" content="Portfolio - TechReign Digital Studio" />
+          <meta property="og:description" content="Portfolio gallery not found." />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://tech-reign.com" />
+          <meta property="og:image" content="https://tech-reign.com/logo.png" />
+        </Helmet>
       <div className="min-h-screen w-full overflow-x-hidden text-text-primary">
         <div
           className="fixed inset-0 w-screen h-screen -z-50 pointer-events-none"
@@ -226,12 +242,41 @@ export const PortfolioDetail: React.FC = () => {
         </main>
         <Footer />
       </div>
+      </>
     )
   }
 
   const hasImages = category.images && category.images.length > 0
 
   return (
+    <>
+      <Helmet>
+        <title>{category?.title} - Portfolio - TechReign Digital Studio</title>
+        <meta name="description" content={category?.description} />
+        <link rel="canonical" href={`https://tech-reign.com/portfolio/${projectSlug}`} />
+        <meta property="og:title" content={`${category?.title} - Portfolio - TechReign`} />
+        <meta property="og:description" content={category?.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://tech-reign.com/portfolio/${projectSlug}`} />
+        <meta property="og:image" content="https://tech-reign.com/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${category?.title} - Portfolio - TechReign`} />
+        <meta name="twitter:description" content={category?.description} />
+        <meta name="twitter:image" content="https://tech-reign.com/logo.png" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          "name": `${category?.title} Portfolio`,
+          "description": category?.description,
+          "url": `https://tech-reign.com/portfolio/${projectSlug}`,
+          "image": "https://tech-reign.com/logo.png",
+          "creator": {
+            "@type": "Organization",
+            "name": "TechReign Digital Studio",
+            "url": "https://tech-reign.com"
+          }
+        })}</script>
+      </Helmet>
     <div className="min-h-screen w-full overflow-x-hidden text-text-primary">
       {/* Background is handled by body::before in style.css - removed duplicate */}
       <Header />
@@ -593,5 +638,6 @@ export const PortfolioDetail: React.FC = () => {
         )}
       </AnimatePresence>
     </div>
+    </>
   )
 }

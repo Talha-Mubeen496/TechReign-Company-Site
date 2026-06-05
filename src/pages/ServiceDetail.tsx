@@ -592,6 +592,16 @@ export const ServiceDetail: React.FC = () => {
       <Helmet>
         <title>{service.title} - TechReign Digital Studio</title>
         <meta name="description" content={service.subtitle} />
+        <link rel="canonical" href={`https://tech-reign.com/service/${serviceSlug}`} />
+        <meta property="og:title" content={`${service.title} - TechReign Digital Studio`} />
+        <meta property="og:description" content={service.subtitle} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://tech-reign.com/service/${serviceSlug}`} />
+        <meta property="og:image" content="https://tech-reign.com/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${service.title} - TechReign Digital Studio`} />
+        <meta name="twitter:description" content={service.subtitle} />
+        <meta name="twitter:image" content="https://tech-reign.com/logo.png" />
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
         </script>

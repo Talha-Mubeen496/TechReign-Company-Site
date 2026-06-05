@@ -893,10 +893,33 @@ export default function BlogHome() {
         <meta property="og:description" content="Expert insights on web development, SEO strategies, and design trends from TechReign Digital Studio. Stay updated with the latest tech industry news." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://tech-reign.com/blog" />
+        <meta property="og:image" content="https://tech-reign.com/logo.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="TechReign Blog - Web Development, SEO & Design Insights" />
         <meta name="twitter:description" content="Expert insights on web development, SEO strategies, and design trends from TechReign Digital Studio. Stay updated with the latest tech industry news." />
+        <meta name="twitter:image" content="https://tech-reign.com/logo.png" />
         <link rel="canonical" href="https://tech-reign.com/blog" />
+        <script type="application/ld+json">{JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Blog",
+          "name": "TechReign Blog",
+          "description": "Expert insights on web development, SEO strategies, and design trends from TechReign Digital Studio.",
+          "url": "https://tech-reign.com/blog",
+          "publisher": {
+            "@type": "Organization",
+            "name": "TechReign Digital Studio",
+            "url": "https://tech-reign.com",
+            "logo": { "@type": "ImageObject", "url": "https://tech-reign.com/logo.png" }
+          },
+          "blogPost": [
+            { "@type": "BlogPosting", "headline": "Web Development Companies Near Me That Actually Deliver Real Results", "url": "https://tech-reign.com/blog/web-development-companies-near-me" },
+            { "@type": "BlogPosting", "headline": "Tech Reign: The Rise of TechReign in Modern Digital Culture", "url": "https://tech-reign.com/blog/tech-reign-rise-modern-digital-culture" },
+            { "@type": "BlogPosting", "headline": "Search Engine Optimization that Actually Works in 2026", "url": "https://tech-reign.com/blog/search-engine-optimization-2026" },
+            { "@type": "BlogPosting", "headline": "Graphic design is my passion a real world story of creativity and growth", "url": "https://tech-reign.com/blog/graphic-design-passion-creativity-growth" },
+            { "@type": "BlogPosting", "headline": "Logo design toolkit pdf that feels human and useful", "url": "https://tech-reign.com/blog/logo-design-toolkit-pdf-human-useful" },
+            { "@type": "BlogPosting", "headline": "Web3 and the New Internet How People Are Taking Back Control", "url": "https://tech-reign.com/blog/web3-new-internet-user-control" }
+          ]
+        })}</script>
       </Helmet>
 
       <div className="min-h-screen w-full overflow-x-hidden text-text-primary">

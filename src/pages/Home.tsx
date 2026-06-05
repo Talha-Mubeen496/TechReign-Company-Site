@@ -26,7 +26,7 @@ export const Home: React.FC = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://tech-reign.com" />
         <meta property="og:image" content="https://tech-reign.com/logo.png" />
-        {/* <link rel="canonical" href="https://tech-reign.com"/> */}
+        <link rel="canonical" href="https://tech-reign.com" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="TechReign – Digital Studio" />
         <meta name="twitter:description" content="Web development, SEO, brand design, 3D visuals & Web3 solutions for modern businesses." />

@@ -112,6 +112,16 @@ export const Contact: React.FC = () => {
       <Helmet>
         <title>Contact Us - TechReign Digital Studio</title>
         <meta name="description" content="Get in touch with TechReign for web development, SEO, and design services. Contact us via phone, email, or visit our office." />
+        <link rel="canonical" href="https://tech-reign.com/contact" />
+        <meta property="og:title" content="Contact Us - TechReign Digital Studio" />
+        <meta property="og:description" content="Get in touch with TechReign for web development, SEO, and design services." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tech-reign.com/contact" />
+        <meta property="og:image" content="https://tech-reign.com/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Us - TechReign Digital Studio" />
+        <meta name="twitter:description" content="Get in touch with TechReign for web development, SEO, and design services." />
+        <meta name="twitter:image" content="https://tech-reign.com/logo.png" />
         <script type="application/ld+json">
           {JSON.stringify(contactSchema)}
         </script>

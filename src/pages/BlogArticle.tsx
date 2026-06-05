@@ -1249,6 +1249,7 @@ export default function BlogArticle() {
         <meta property="og:description" content={post.excerpt} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://tech-reign.com/blog/${post.slug}`} />
+        <meta property="og:image" content="https://tech-reign.com/logo.png" />
         <meta property="article:published_time" content={post.publishDate} />
         <meta property="article:author" content={post.author} />
         <meta property="article:section" content={post.category} />
@@ -1256,6 +1257,7 @@ export default function BlogArticle() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
         <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:image" content="https://tech-reign.com/logo.png" />
         <link rel="canonical" href={`https://tech-reign.com/blog/${post.slug}`} />
         <script type="application/ld+json">
           {JSON.stringify(articleSchema)}
