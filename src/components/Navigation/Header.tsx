@@ -1,108 +1,84 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { MobileMenu } from './MobileMenu'
 import { useMediaQuery } from '../../hooks/useMediaQuery'
 
-const navItems = [
-  { id: 'hero', label: 'Home' },
-  { id: 'about', label: 'About' },
-  { id: 'mission', label: 'Mission' },
-  { id: 'services', label: 'Services' },
-  { id: 'portfolio', label: 'Portfolio' },
-  { id: 'pricing', label: 'Pricing' },
-  { id: 'testimonials', label: 'Testimonials' },
-  { id: 'contact', label: 'Contact' },
+// `to` is what crawlers follow. Section links stay real URLs so the internal
+// link graph is visible to search engines; the click handler below only
+// intercepts them to keep the smooth-scroll behaviour on the home page.
+export const navItems = [
+  { id: 'hero', label: 'Home', to: '/' },
+  { id: 'about', label: 'About', to: '/#about' },
+  { id: 'mission', label: 'Mission', to: '/#mission' },
+  { id: 'services', label: 'Services', to: '/#services' },
+  { id: 'portfolio', label: 'Portfolio', to: '/#portfolio' },
+  { id: 'pricing', label: 'Pricing', to: '/#pricing' },
+  { id: 'testimonials', label: 'Testimonials', to: '/#testimonials' },
+  { id: 'contact', label: 'Contact', to: '/contact' },
 ]
+
+export type NavItem = (typeof navItems)[number]
 
 export const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('hero')
-  const [logoLoaded, setLogoLoaded] = useState(false)
+  const [logoFailed, setLogoFailed] = useState(false)
   const isDesktop = useMediaQuery('(min-width: 1024px)')
-  const navigate = useNavigate()
   const location = useLocation()
   const isHomePage = location.pathname === '/'
-  
-  // Try multiple logo file paths
-  const logoPaths = ['/logo.png', '/logo.svg', '/logo.jpg', '/logo.webp', '/Logo.png', '/Logo.svg']
-  const [currentLogoPath, setCurrentLogoPath] = useState(logoPaths[0])
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 10)
 
-      const offsets = navItems.map((item) => {
-        const section = document.getElementById(item.id)
-        if (!section) return { id: item.id, top: 0 }
-        const rect = section.getBoundingClientRect()
-        return { id: item.id, top: Math.abs(rect.top) }
-      })
+      // Only consider sections that actually exist on this page, so the active
+      // state stays correct on routes that don't render the home sections.
+      const offsets = navItems
+        .map((item) => {
+          const section = document.getElementById(item.id)
+          if (!section) return null
+          return { id: item.id, top: Math.abs(section.getBoundingClientRect().top) }
+        })
+        .filter((entry): entry is { id: string; top: number } => entry !== null)
+
       const current = offsets.sort((a, b) => a.top - b.top)[0]
       if (current) setActive(current.id)
     }
     onScroll()
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const scrollTo = (id: string) => {
-    // Special handling for contact - navigate to contact page
-    if (id === 'contact') {
-      navigate('/contact')
-      setOpen(false)
+  const scrollToSection = (id: string) => {
+    if (id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
-    
-    // Special handling for hero - if on home page, scroll to top; if not, navigate to home
-    if (id === 'hero') {
-      if (isHomePage) {
-        // Scroll to top of home page
-        window.scrollTo({ top: 0, behavior: 'smooth' })
-        setOpen(false)
-        return
-      } else {
-        // Navigate to home page
-        navigate('/')
-        setOpen(false)
-        return
-      }
-    }
-    
-    // If not on home page, navigate to home first
-    if (!isHomePage) {
-      navigate(`/#${id}`)
-      // Wait for navigation, then scroll
-      setTimeout(() => {
-        const el = document.getElementById(id)
-        if (el) {
-          const y = el.getBoundingClientRect().top + window.scrollY - 80
-          window.scrollTo({ top: y, behavior: 'smooth' })
-        }
-      }, 100)
-    } else {
-      const el = document.getElementById(id)
-      if (!el) return
-      const y = el.getBoundingClientRect().top + window.scrollY - 80
-      window.scrollTo({ top: y, behavior: 'smooth' })
-    }
-    setOpen(false)
+    const el = document.getElementById(id)
+    if (!el) return
+    const y = el.getBoundingClientRect().top + window.scrollY - 80
+    window.scrollTo({ top: y, behavior: 'smooth' })
   }
-  
-  // Handle hash navigation after route change
+
+  // Let the browser follow the href unless we're already on the page that
+  // holds the target section, in which case scroll smoothly instead.
+  const handleNavClick = (event: React.MouseEvent, item: NavItem) => {
+    setOpen(false)
+    const isSectionLink = item.to === '/' || item.to.startsWith('/#')
+    if (!isSectionLink || !isHomePage) return
+    event.preventDefault()
+    scrollToSection(item.id)
+  }
+
+  // Scroll to the section named by the hash after arriving from another route.
   useEffect(() => {
-    if (isHomePage && location.hash) {
-      const id = location.hash.slice(1)
-      setTimeout(() => {
-        const el = document.getElementById(id)
-        if (el) {
-          const y = el.getBoundingClientRect().top + window.scrollY - 80
-          window.scrollTo({ top: y, behavior: 'smooth' })
-        }
-      }, 100)
-    }
+    if (!isHomePage || !location.hash) return
+    const id = location.hash.slice(1)
+    const frame = requestAnimationFrame(() => scrollToSection(id))
+    return () => cancelAnimationFrame(frame)
   }, [location.hash, isHomePage])
 
   return (
@@ -123,47 +99,27 @@ export const Header: React.FC = () => {
           transition={{ duration: 0.5 }}
           aria-label="Primary"
         >
-          <button
-            onClick={() => {
-              if (isHomePage) {
-                scrollTo('hero')
-              } else {
-                navigate('/')
-              }
-            }}
-            className="flex items-center gap-3 rounded-full px-2 py-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+          <Link
+            to="/"
+            onClick={(event) => handleNavClick(event, navItems[0])}
+            aria-label="TechReign Digital Studio — home"
+            className="flex items-center gap-3 rounded-full px-2 py-1 no-underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
             style={{ boxShadow: 'none', border: 'none' }}
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-full overflow-hidden shrink-0" style={{ boxShadow: 'none', border: 'none' }}>
-              {logoLoaded ? (
-                <img 
-                  src={currentLogoPath} 
-                  alt="TechReign Logo" 
-                  className="h-full w-full object-contain"
-                />
+              {logoFailed ? (
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-accent-blue to-accent-violet text-sm font-semibold text-white">
+                  TR
+                </div>
               ) : (
-                <>
-                  <img 
-                    src={currentLogoPath} 
-                    alt="TechReign Logo" 
-                    className="h-full w-full object-contain"
-                    onLoad={() => setLogoLoaded(true)}
-                    onError={() => {
-                      const currentIndex = logoPaths.indexOf(currentLogoPath)
-                      if (currentIndex < logoPaths.length - 1) {
-                        setCurrentLogoPath(logoPaths[currentIndex + 1])
-                      } else {
-                        // Fallback to text logo
-                        setLogoLoaded(false)
-                      }
-                    }}
-                  />
-                  {!logoLoaded && currentLogoPath === logoPaths[logoPaths.length - 1] && (
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-accent-blue to-accent-violet text-white text-sm font-semibold">
-                      TR
-                    </div>
-                  )}
-                </>
+                <img
+                  src="/logo.png"
+                  alt="TechReign Digital Studio logo"
+                  width={40}
+                  height={40}
+                  className="h-full w-full object-contain"
+                  onError={() => setLogoFailed(true)}
+                />
               )}
             </div>
             <div className="flex flex-col items-start">
@@ -174,26 +130,17 @@ export const Header: React.FC = () => {
                 Digital Studio
               </span>
             </div>
-          </button>
+          </Link>
 
           {isDesktop ? (
             <div className="flex items-center gap-6">
               <ul className="flex items-center gap-4 text-xs font-medium text-white/70">
                 {navItems.map((item) => (
                   <li key={item.id}>
-                    <button
-                      onClick={() => {
-                        if (item.id === 'hero') {
-                          if (isHomePage) {
-                            scrollTo('hero')
-                          } else {
-                            navigate('/')
-                          }
-                        } else {
-                          scrollTo(item.id)
-                        }
-                      }}
-                      className={`relative px-3 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
+                    <Link
+                      to={item.to}
+                      onClick={(event) => handleNavClick(event, item)}
+                      className={`relative block px-3 py-1 no-underline transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/70 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${
                         active === item.id ? 'text-white' : ''
                       }`}
                     >
@@ -204,26 +151,13 @@ export const Header: React.FC = () => {
                           className="absolute inset-x-2 -bottom-1 h-[2px] rounded-full bg-accent-blue"
                         />
                       )}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
-              <button
-                onClick={() => {
-                  navigate('/contact#contact-form')
-                  // Small delay to ensure page loads before scrolling
-                  setTimeout(() => {
-                    const element = document.getElementById('contact-form')
-                    if (element) {
-                      const y = element.getBoundingClientRect().top + window.scrollY - 80
-                      window.scrollTo({ top: y, behavior: 'smooth' })
-                    }
-                  }, 100)
-                }}
-                className="btn-primary magnetic"
-              >
+              <Link to="/contact" className="btn-primary magnetic no-underline">
                 <span className="magnetic-inner text-xs">Get Started Today</span>
-              </button>
+              </Link>
             </div>
           ) : (
             <motion.button
@@ -244,10 +178,15 @@ export const Header: React.FC = () => {
           )}
         </motion.nav>
       </motion.div>
-      {!isDesktop && <MobileMenu open={open} onNavigate={scrollTo} activeId={active} items={navItems} />}
+      {!isDesktop && (
+        <MobileMenu
+          open={open}
+          onClose={() => setOpen(false)}
+          onNavigate={handleNavClick}
+          activeId={active}
+          items={navItems}
+        />
+      )}
     </header>
   )
 }
-
-
-

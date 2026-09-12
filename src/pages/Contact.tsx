@@ -6,6 +6,7 @@ import { ContactSection } from '../components/Contact/ContactSection'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '../utils/animations'
 import { Mail, PhoneCall, MapPin, Clock, Sparkles, Zap, Globe, Rocket, HelpCircle } from 'lucide-react'
+import { Seo } from '../seo/Seo'
 
 export const Contact: React.FC = () => {
   useEffect(() => {
@@ -46,6 +47,12 @@ export const Contact: React.FC = () => {
       {
         "@type": "ListItem",
         "position": 1,
+        "name": "Home",
+        "item": "https://tech-reign.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
         "name": "Contact Us",
         "item": "https://tech-reign.com/contact"
       }
@@ -109,19 +116,8 @@ export const Contact: React.FC = () => {
 
   return (
     <>
+      <Seo path="/contact" />
       <Helmet>
-        <title>Contact Us - TechReign Digital Studio</title>
-        <meta name="description" content="Get in touch with TechReign for web development, SEO, and design services. Contact us via phone, email, or visit our office." />
-        <link rel="canonical" href="https://tech-reign.com/contact" />
-        <meta property="og:title" content="Contact Us - TechReign Digital Studio" />
-        <meta property="og:description" content="Get in touch with TechReign for web development, SEO, and design services." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tech-reign.com/contact" />
-        <meta property="og:image" content="https://tech-reign.com/logo.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Contact Us - TechReign Digital Studio" />
-        <meta name="twitter:description" content="Get in touch with TechReign for web development, SEO, and design services." />
-        <meta name="twitter:image" content="https://tech-reign.com/logo.png" />
         <script type="application/ld+json">
           {JSON.stringify(contactSchema)}
         </script>

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { fadeInUp, slideInRight, staggerContainer } from '../../utils/animations'
 import { StatCard } from './StatCard'
@@ -40,14 +41,13 @@ export const HeroSection: React.FC = () => {
           <motion.div variants={fadeInUp}>
             <p className="heading-label mb-4">Bring Your Business Ideas to Life</p>
            <h1 className="primary-heading max-w-xl text-white">
-              Digital Studio For Business{' '}
+              TechReign — Digital Studio for Business{' '}
             <span className="relative inline-block">
               <span className="relative z-10 bg-gradient-to-r from-accent-blue via-blue-400 to-accent-blue bg-clip-text text-transparent">
                 Growth
               </span>
               <span className="absolute inset-x-0 bottom-0 h-2 translate-y-1 rounded-full bg-accent-blue/15" />
               </span>
-              .
           </h1>
           {/* <p className="mt-2 text-xs font-medium uppercase tracking-[0.24em] text-white/60 md:text-[11px]">
   Web Development • SEO • Brand Design • 3D Experiences
@@ -58,23 +58,23 @@ export const HeroSection: React.FC = () => {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <button className="btn-primary magnetic">
+              <Link to="/contact" className="btn-primary magnetic no-underline">
                 <span className="magnetic-inner text-xs md:text-sm">Get Started Today</span>
-              </button>
-              <button className="btn-outline text-xs md:text-sm">
+              </Link>
+              <Link to="/#services" className="btn-outline text-xs no-underline md:text-sm">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent-blue" />
                 Explore how we work
-              </button>
+              </Link>
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-4 text-[11px] text-white/70 md:text-xs">
               <span className="rounded-full bg-white/10 px-3 py-1 font-medium text-white/80">
                 Web Development
               </span>
-              <span>SEO & Growth Strategy</span>
-              <span>3d Experinces</span>
-              <span>Brand Design & Figma</span>
-              <span>Web3· Blockchain</span>
+              <span>SEO &amp; Growth Strategy</span>
+              <span>3D Experiences</span>
+              <span>Brand Design &amp; Figma</span>
+              <span>Web3 · Blockchain</span>
               <span>Ecommerce</span>
             </div>
 

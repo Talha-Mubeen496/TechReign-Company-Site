@@ -6,10 +6,10 @@ import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '../utils/animations'
 import { Header } from '../components/Navigation/Header'
 import { Footer } from '../components/Footer/Footer'
+import { serviceMeta } from '../data/services'
+import { Seo } from '../seo/Seo'
 
 interface ServiceData {
-  title: string
-  subtitle: string
   icon: React.ReactNode
   overview: string
   features: Array<{ icon: React.ReactNode; title: string; description: string }>
@@ -21,8 +21,6 @@ interface ServiceData {
 // Service data for all services
 const servicesData: Record<string, ServiceData> = {
   'web-development': {
-    title: 'Web Development',
-    subtitle: 'Build high-performing websites and web applications with modern technologies',
     icon: <Code size={48} />,
     overview: 'We create responsive, fast, and scalable websites and web applications using cutting-edge technologies. From simple landing pages to complex web platforms, we deliver solutions that provide exceptional user experiences and drive business growth.',
     features: [
@@ -99,8 +97,6 @@ const servicesData: Record<string, ServiceData> = {
     ]
   },
   'seo': {
-    title: 'SEO',
-    subtitle: 'Boost your search engine rankings and organic visibility',
     icon: <TrendingUp size={48} />,
     overview: 'Our SEO services help your website rank higher in search results, driving qualified organic traffic and increasing visibility. We use data-driven strategies, technical optimization, and content marketing to improve your search engine performance and grow your business.',
     features: [
@@ -177,8 +173,6 @@ const servicesData: Record<string, ServiceData> = {
     ]
   },
   'graphics-3d-designing': {
-    title: 'Graphics and 3D Designing',
-    subtitle: 'Create stunning visual designs and 3D models that bring your brand to life',
     icon: <Palette size={48} />,
     overview: 'We specialize in creating compelling visual designs and realistic 3D models for your brand. From logos and marketing materials to 3D product visualizations and animations, we combine creativity with technical excellence to deliver designs that captivate and inspire.',
     features: [
@@ -255,8 +249,6 @@ const servicesData: Record<string, ServiceData> = {
     ]
   },
   'video-editing': {
-    title: 'Video Editing',
-    subtitle: 'Transform raw footage into compelling video content',
     icon: <Video size={48} />,
     overview: 'We turn your raw video footage into polished, engaging content that tells your story. Our video editing services include professional post-production, color grading, motion graphics, sound design, and optimization for various platforms to maximize your video\'s impact.',
     features: [
@@ -333,8 +325,6 @@ const servicesData: Record<string, ServiceData> = {
     ]
   },
   'social-media-handling': {
-    title: 'Social Media Handling',
-    subtitle: 'Manage and grow your social media presence strategically',
     icon: <Share2 size={48} />,
     overview: 'We handle your complete social media strategy, from content creation and scheduling to community management and analytics. Our team helps you build a strong online presence, engage with your audience, and drive meaningful results across all major social platforms.',
     features: [
@@ -411,8 +401,6 @@ const servicesData: Record<string, ServiceData> = {
     ]
   },
   'web-3': {
-    title: 'Web3',
-    subtitle: 'Navigate the decentralized web with blockchain solutions',
     icon: <Box size={48} />,
     overview: 'We help businesses leverage Web3 technologies including blockchain, smart contracts, NFTs, and decentralized applications. From DeFi platforms to NFT marketplaces and blockchain integration, we provide cutting-edge Web3 solutions that open new possibilities for your business.',
     features: [
@@ -504,19 +492,40 @@ export const ServiceDetail: React.FC = () => {
     document.body.style.opacity = '1'
   }, [])
 
-  // Get service data or redirect
-  const service = serviceSlug ? servicesData[serviceSlug] : null
+  // Name and summary come from the shared metadata module so the page head and
+  // the prerender step can never disagree; the rich content stays local.
+  const meta = serviceSlug ? serviceMeta[serviceSlug] : undefined
+  const content = serviceSlug ? servicesData[serviceSlug] : undefined
+  const service = meta && content ? { ...meta, ...content } : null
 
   if (!service) {
     return (
-      <div className="min-h-screen w-full overflow-x-hidden text-text-primary flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-semibold text-white mb-4">Service not found</h1>
-          <Link to="/" className="text-accent-teal hover:text-white">
-            Return to Home
-          </Link>
+      <>
+        <Helmet>
+          <title>Service not found - TechReign Digital Studio</title>
+          <meta name="robots" content="noindex,follow" />
+        </Helmet>
+        <div className="min-h-screen w-full overflow-x-hidden text-text-primary">
+          <Header />
+          <main className="relative w-full overflow-x-hidden pt-20 md:pt-24">
+            <section className="section-padding">
+              <div className="container-max text-center">
+                <h1 className="primary-heading mb-4">Service not found</h1>
+                <p className="mb-8 text-white/80">
+                  That service page does not exist. Browse everything we offer instead.
+                </p>
+                <Link
+                  to="/#services"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent-blue to-accent-violet px-6 py-3 text-sm font-semibold text-white no-underline shadow-soft transition hover:brightness-110"
+                >
+                  View all services
+                </Link>
+              </div>
+            </section>
+          </main>
+          <Footer />
         </div>
-      </div>
+      </>
     )
   }
 
@@ -577,31 +586,14 @@ export const ServiceDetail: React.FC = () => {
         "position": 3,
         "name": service.title,
         "item": `https://tech-reign.com/service/${serviceSlug}`
-      },
-      {
-        "@type": "ListItem",
-        "position": 4,
-        "name": "SchoolAims",
-        "item": `https://tech-reign.com/service/school-management`
       }
     ]
   }
 
   return (
     <>
+      <Seo path={`/service/${serviceSlug}`} />
       <Helmet>
-        <title>{service.title} - TechReign Digital Studio</title>
-        <meta name="description" content={service.subtitle} />
-        <link rel="canonical" href={`https://tech-reign.com/service/${serviceSlug}`} />
-        <meta property="og:title" content={`${service.title} - TechReign Digital Studio`} />
-        <meta property="og:description" content={service.subtitle} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://tech-reign.com/service/${serviceSlug}`} />
-        <meta property="og:image" content="https://tech-reign.com/logo.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${service.title} - TechReign Digital Studio`} />
-        <meta name="twitter:description" content={service.subtitle} />
-        <meta name="twitter:image" content="https://tech-reign.com/logo.png" />
         <script type="application/ld+json">
           {JSON.stringify(serviceSchema)}
         </script>

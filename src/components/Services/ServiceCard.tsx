@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { fadeInUp } from '../../utils/animations'
 
@@ -10,34 +10,22 @@ interface ServiceCardProps {
   serviceSlug: string
 }
 
+const MotionLink = motion(Link)
+
 export const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, description, serviceSlug }) => {
-  const navigate = useNavigate()
-
-  const handleClick = () => {
-    navigate(`/service/${serviceSlug}`)
-  }
-
   return (
-    <motion.article
+    <MotionLink
+      to={`/service/${serviceSlug}`}
       variants={fadeInUp}
-      onClick={handleClick}
-      whileHover={{ 
-        y: -4, 
+      whileHover={{
+        y: -4,
         scale: 1.01,
       }}
       whileTap={{ scale: 0.98 }}
-      className="service-card group relative cursor-pointer overflow-hidden rounded-[32px] border border-white/12 bg-gradient-to-br from-white/14 via-white/4 to-transparent p-card shadow-floating ring-1 ring-white/5 h-full flex flex-col"
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault()
-          handleClick()
-        }
-      }}
+      className="service-card group relative flex h-full cursor-pointer flex-col overflow-hidden rounded-[32px] border border-white/12 bg-gradient-to-br from-white/14 via-white/4 to-transparent p-card no-underline shadow-floating ring-1 ring-white/5"
       aria-label={`Learn more about ${title}`}
-      style={{ 
-        willChange: 'transform', 
+      style={{
+        willChange: 'transform',
         isolation: 'isolate',
       }}
     >
@@ -75,11 +63,12 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ icon, title, descripti
           animate={{ x: 0 }}
           whileHover={{ x: 4 }}
           transition={{ type: "spring", stiffness: 500, damping: 25 }}
+          aria-hidden="true"
         >
           →
         </motion.span>
       </motion.div>
-    </motion.article>
+    </MotionLink>
   )
 }
 

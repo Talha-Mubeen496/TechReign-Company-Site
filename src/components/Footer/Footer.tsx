@@ -1,40 +1,36 @@
-import React from 'react'
-import { Facebook, Instagram, Linkedin, } from 'lucide-react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Facebook, Instagram, Linkedin } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
+const usefulLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'About us', to: '/#about' },
+  { label: 'Services', to: '/#services' },
+  { label: 'Portfolio', to: '/#portfolio' },
+  { label: 'Blog', to: '/blog' },
+  { label: 'Contact', to: '/contact' },
+]
+
+// Sitewide links into the service pages. Without these the service routes are
+// reachable only from the sitemap, which gets them crawled but not ranked.
+const serviceLinks = [
+  { label: 'Web Development', slug: 'web-development' },
+  { label: 'SEO', slug: 'seo' },
+  { label: 'Graphics and 3D Designing', slug: 'graphics-3d-designing' },
+  { label: 'Video Editing', slug: 'video-editing' },
+  { label: 'Social Media Handling', slug: 'social-media-handling' },
+  { label: 'Web3', slug: 'web-3' },
+  { label: 'SchoolAims', slug: 'school-management' },
+]
+
+const socialLinks = [
+  { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61585578450592', Icon: Facebook },
+  { label: 'Instagram', href: 'https://www.instagram.com/techreign_/', Icon: Instagram },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/techreign', Icon: Linkedin },
+]
 
 export const Footer: React.FC = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const isHomePage = location.pathname === '/'
-
-  const scrollTo = (id: string) => {
-    // If not on home page, navigate to home first
-    if (!isHomePage) {
-      navigate(`/#${id}`)
-      // Wait for navigation, then scroll
-      setTimeout(() => {
-        const el = document.getElementById(id)
-        if (el) {
-          const y = el.getBoundingClientRect().top + window.scrollY - 80
-          window.scrollTo({ top: y, behavior: 'smooth' })
-        }
-      }, 100)
-    } else {
-      const el = document.getElementById(id)
-      if (!el) return
-      const y = el.getBoundingClientRect().top + window.scrollY - 80
-      window.scrollTo({ top: y, behavior: 'smooth' })
-    }
-  }
-
-  const usefulLinks = [
-    { label: 'Home', id: 'hero', isLink: true },
-    { label: 'About us', id: 'about', isLink: true },
-    { label: 'Services', id: 'services', isLink: true },
-    { label: 'Blog', id: 'blog', isLink: false, route: '/blog' },
-    { label: 'Terms of service', id: '', isLink: false },
-    { label: 'Privacy policy', id: '', isLink: false },
-  ]
+  const [logoFailed, setLogoFailed] = useState(false)
 
   return (
     <footer className="relative overflow-hidden bg-gradient-to-t from-[#040914] via-[#07112a] to-[#0a1737] text-text-secondary">
@@ -47,23 +43,20 @@ export const Footer: React.FC = () => {
           <div>
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-full overflow-hidden shrink-0">
-                <img 
-                  src="/logo.png" 
-                  alt="TechReign Logo" 
-                  className="h-full w-full object-contain"
-                  onError={(e) => {
-                    // Fallback to text logo if image fails to load
-                    const target = e.target as HTMLImageElement
-                    target.style.display = 'none'
-                    const fallback = target.nextElementSibling as HTMLElement
-                    if (fallback) {
-                      fallback.style.display = 'flex'
-                    }
-                  }}
-                />
-                <div className="hidden h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-accent-blue to-accent-violet text-white text-sm font-semibold shadow-soft">
-                  TR
-                </div>
+                {logoFailed ? (
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-accent-blue to-accent-violet text-sm font-semibold text-white shadow-soft">
+                    TR
+                  </div>
+                ) : (
+                  <img
+                    src="/logo.png"
+                    alt="TechReign Digital Studio logo"
+                    width={40}
+                    height={40}
+                    className="h-full w-full object-contain"
+                    onError={() => setLogoFailed(true)}
+                  />
+                )}
               </div>
               <div>
                 <p className="font-display text-sm font-semibold text-white">TechReign</p>
@@ -76,42 +69,18 @@ export const Footer: React.FC = () => {
               Creative software team building digital solutions that move brands forward.
             </p>
             <div className="mt-4 flex gap-2">
-              {/* <a
-                href=""
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
-                aria-label="Twitter link"
-              >
-                <Twitter size={14} />
-              </a> */}
-              <a
-                href="https://www.facebook.com/profile.php?id=61585578450592"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
-                aria-label="Facebook link"
-              >
-                <Facebook size={14} />
-              </a>
-              <a
-                href="https://www.instagram.com/techreign_/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
-                aria-label="Instagram link"
-              >
-                <Instagram size={14} />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/techreign"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
-                aria-label="LinkedIn link"
-              >
-                <Linkedin size={14} />
-              </a>
+              {socialLinks.map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/70 transition hover:border-white/30 hover:bg-white/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-teal/60"
+                  aria-label={`TechReign on ${label}`}
+                >
+                  <Icon size={14} />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -120,26 +89,9 @@ export const Footer: React.FC = () => {
             <ul className="mt-3 space-y-2 text-sm">
               {usefulLinks.map((item) => (
                 <li key={item.label}>
-                  {item.isLink ? (
-                    <button
-                      onClick={() => scrollTo(item.id)}
-                      className="text-white/65 transition hover:text-white cursor-pointer"
-                    >
-                      {item.label}
-                    </button>
-                  ) : item.route ? (
-                    <button
-                      onClick={() => {
-                        navigate(item.route)
-                        window.scrollTo({ top: 0, behavior: 'smooth' })
-                      }}
-                      className="text-white/65 transition hover:text-white cursor-pointer"
-                    >
-                      {item.label}
-                    </button>
-                  ) : (
-                    <span className="text-white/65">{item.label}</span>
-                  )}
+                  <Link to={item.to} className="text-white/65 transition hover:text-white">
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -148,39 +100,35 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="text-sm font-semibold text-white">Our Services</h4>
             <ul className="mt-3 space-y-2 text-sm">
-              {['Web Development', 'SEO', 'Graphics and 3D Designing', 'Video Editing', 'Social Media Handling', 'Web3'].map(
-                (item) => (
-                  <li key={item}>
-                    <span className="text-white/65">{item}</span>
-                  </li>
-                ),
-              )}
+              {serviceLinks.map((service) => (
+                <li key={service.slug}>
+                  <Link
+                    to={`/service/${service.slug}`}
+                    className="text-white/65 transition hover:text-white"
+                  >
+                    {service.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
             <h4 className="text-sm font-semibold text-white">
-              <a href="/contact" className="hover:text-white transition-colors ml-1">
-                 Contact Us
-              </a>
-              </h4>
+              <Link to="/contact" className="transition hover:text-white">
+                Contact Us
+              </Link>
+            </h4>
             <div className="mt-3 space-y-1 text-sm text-white/70">
-              {/* <p>
-                <a href="/contact" className="hover:text-white transition-colors">
-                  A108 Adam Street
-                </a>
-              </p>
-              <p>New York, NY 535022</p>
-              <p>United States</p> */}
               <p className="mt-2">
-                <span className="font-semibold text-white">Phone:</span> 
-                <a href="tel:+155895548855" className="hover:text-white transition-colors ml-1">
+                <span className="font-semibold text-white">Phone:</span>{' '}
+                <a href="tel:+923209105983" className="transition hover:text-white">
                   +92-320-9105983
                 </a>
               </p>
               <p>
-                <span className="font-semibold text-white">Email:</span> 
-                <a href="mailto:info@tech-reign.com" className="hover:text-white transition-colors ml-1">
+                <span className="font-semibold text-white">Email:</span>{' '}
+                <a href="mailto:info@tech-reign.com" className="transition hover:text-white">
                   info@tech-reign.com
                 </a>
               </p>
@@ -190,7 +138,7 @@ export const Footer: React.FC = () => {
       </div>
       <div className="relative border-t border-white/10 bg-primary-navy/80">
         <div className="container-max relative z-10 flex flex-col items-center justify-between gap-3 py-4 text-xs text-white/65 md:flex-row">
-          <p>© Copyright TechReign. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} TechReign Digital Studio. All Rights Reserved.</p>
           <p>
             Designed and Developed by <span className="font-semibold text-white">TechReign - Digital Studio</span>
           </p>
@@ -199,6 +147,3 @@ export const Footer: React.FC = () => {
     </footer>
   )
 }
-
-
-

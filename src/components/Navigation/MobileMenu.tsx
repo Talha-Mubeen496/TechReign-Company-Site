@@ -1,28 +1,24 @@
 import React, { useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-
-interface NavItem {
-  id: string
-  label: string
-}
+import { Link } from 'react-router-dom'
+import type { NavItem } from './Header'
 
 interface MobileMenuProps {
   open: boolean
-  items: NavItem[]
+  items: readonly NavItem[]
   activeId: string
-  onNavigate: (id: string) => void
+  onNavigate: (event: React.MouseEvent, item: NavItem) => void
+  onClose: () => void
 }
 
-export const MobileMenu: React.FC<MobileMenuProps> = ({ open, items, activeId, onNavigate }) => {
+export const MobileMenu: React.FC<MobileMenuProps> = ({ open, items, activeId, onNavigate, onClose }) => {
   // Prevent body scroll when menu is open
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = 'unset'
-    }
+    if (!open) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
     return () => {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = previous
     }
   }, [open])
 
@@ -35,7 +31,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ open, items, activeId, o
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => onNavigate(activeId)} // Close menu when backdrop is clicked
+            onClick={onClose}
             className="fixed inset-0 bg-black/60 backdrop-blur-sm z-20"
             style={{ top: '64px' }}
           />
@@ -61,17 +57,17 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ open, items, activeId, o
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.05 }}
                     >
-                      <motion.button
-                        onClick={() => onNavigate(item.id)}
-                        whileTap={{ scale: 0.95 }}
-                        className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 transition-all duration-200 active:scale-95 ${
+                      <Link
+                        to={item.to}
+                        onClick={(event) => onNavigate(event, item)}
+                        className={`flex w-full items-center justify-between rounded-2xl px-4 py-3.5 no-underline transition-all duration-200 active:scale-95 ${
                           activeId === item.id
                             ? 'bg-gradient-to-r from-accent-blue/20 to-accent-violet/20 text-text-primary border border-accent-blue/30'
                             : 'hover:bg-white/10'
                         }`}
                       >
                         <span className="font-medium">{item.label}</span>
-                        {activeId === item.id && (
+                        {activeId === item.id ? (
                           <motion.span
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
@@ -79,17 +75,17 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ open, items, activeId, o
                           >
                             <span className="h-2 w-2 rounded-full bg-white" />
                           </motion.span>
-                        )}
-                        {activeId !== item.id && (
+                        ) : (
                           <motion.span
                             initial={{ x: -5, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             className="text-white/40"
+                            aria-hidden="true"
                           >
                             →
                           </motion.span>
                         )}
-                      </motion.button>
+                      </Link>
                     </motion.li>
                   ))}
                 </ul>
@@ -101,6 +97,3 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ open, items, activeId, o
     </>
   )
 }
-
-
-
