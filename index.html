@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8" />
 
-    <!-- Favicons -->
+    <!-- Favicons. Google needs one that is a multiple of 48px square to show
+         the site-name row in search results, so 192 is declared first. -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -12,44 +14,86 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Meta tags will be controlled by React Helmet -->
-
-    <!-- Canonical Tag for SEO -->
-    <link rel="canonical" href="https://tech-reign.com" />
+    <!-- Defaults for crawlers and social scrapers that do not run JavaScript.
+         React Helmet overrides these per route in the browser. Do NOT add a
+         canonical here: it would apply to every URL and conflict with the
+         per-page canonical each route sets. -->
+    <title>TechReign Digital Studio — Web Development, SEO &amp; 3D Design</title>
+    <meta
+      name="description"
+      content="TechReign Digital Studio designs and builds high-converting websites, search-optimised content and premium 3D visuals for businesses worldwide."
+    />
+    <meta property="og:site_name" content="TechReign Digital Studio" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://tech-reign.com/" />
+    <meta property="og:title" content="TechReign Digital Studio — Web Development, SEO &amp; 3D Design" />
+    <meta
+      property="og:description"
+      content="TechReign Digital Studio designs and builds high-converting websites, search-optimised content and premium 3D visuals for businesses worldwide."
+    />
+    <meta property="og:image" content="https://tech-reign.com/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="TechReign Digital Studio — Web Development, SEO &amp; 3D Design" />
+    <meta
+      name="twitter:description"
+      content="TechReign Digital Studio designs and builds high-converting websites, search-optimised content and premium 3D visuals for businesses worldwide."
+    />
+    <meta name="twitter:image" content="https://tech-reign.com/logo.png" />
 
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": ["ProfessionalService", "Organization"],
-        "name": "TechReign Digital Studio",
-        "alternateName": ["TechReign", "Tech Reign", "techreign", "tech reign"],
-        "url": "https://tech-reign.com",
-        "logo": "https://tech-reign.com/logo.png",
-        "description": "Digital studio offering web development, SEO, and 3D design services.",
-        "openingHours": [
-          "Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday 00:00-24:00"
-        ],
-        "address": {
-          "@type": "PostalAddress",
-          "addressCountry": "Pakistan" 
-        },
-        "sameAs": [
-          "https://www.facebook.com/profile.php?id=61585578450592",
-          "https://x.com/TechReign_",
-          "https://www.instagram.com/techreign_/",
-          "https://www.linkedin.com/company/techreign",
-          "https://tech-reign.com/"
-        ],
-        "areaServed": {
-          "@type": "Country",
-          "name": "Worldwide"
-        },
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://tech-reign.com/?q={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
+        "@graph": [
+          {
+            "@type": ["Organization", "ProfessionalService"],
+            "@id": "https://tech-reign.com/#organization",
+            "name": "TechReign Digital Studio",
+            "alternateName": ["TechReign", "Tech Reign"],
+            "url": "https://tech-reign.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "@id": "https://tech-reign.com/#logo",
+              "url": "https://tech-reign.com/logo.png",
+              "caption": "TechReign Digital Studio"
+            },
+            "image": { "@id": "https://tech-reign.com/#logo" },
+            "description": "TechReign Digital Studio designs and builds high-converting websites, search-optimised content and premium 3D visuals for businesses worldwide.",
+            "email": "info@tech-reign.com",
+            "telephone": "+92-320-9105983",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "PK"
+            },
+            "knowsAbout": [
+              "Web development",
+              "Search engine optimisation",
+              "Graphic and 3D design",
+              "Video editing",
+              "Social media management",
+              "Web3 and blockchain development"
+            ],
+            "sameAs": [
+              "https://www.facebook.com/profile.php?id=61585578450592",
+              "https://x.com/TechReign_",
+              "https://www.instagram.com/techreign_/",
+              "https://www.linkedin.com/company/techreign"
+            ],
+            "areaServed": {
+              "@type": "Country",
+              "name": "Worldwide"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://tech-reign.com/#website",
+            "url": "https://tech-reign.com/",
+            "name": "TechReign Digital Studio",
+            "alternateName": "TechReign",
+            "publisher": { "@id": "https://tech-reign.com/#organization" },
+            "inLanguage": "en"
+          }
+        ]
       }
     </script>
   </head>

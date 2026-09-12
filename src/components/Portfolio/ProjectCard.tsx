@@ -1,7 +1,7 @@
-import React, { useState, useCallback, useMemo, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState, useMemo, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, Eye, Award } from 'lucide-react'
+import { Award } from 'lucide-react'
 
 interface ProjectCardProps {
   title: string
@@ -49,40 +49,29 @@ const PROJECT_DATA = {
 
 type ProjectCategory = keyof typeof PROJECT_DATA
 
+const MotionLink = motion(Link)
+
 export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tag, year, slug, category }) => {
-  const navigate = useNavigate()
   const project = PROJECT_DATA[category as ProjectCategory]
-  
+
   // State for image cycling
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0)
-  
+
+  const imageCount = project?.images.length ?? 0
+
   // Auto-cycle through images every 3 seconds
   useEffect(() => {
+    if (imageCount < 2) return
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
-        (prevIndex + 1) % project.images.length
-      )
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageCount)
     }, 3000)
-    
+
     return () => clearInterval(interval)
-  }, [category, project.images.length])
-  
-  // Memoized click handler
-  const handleClick = useCallback(() => {
-    navigate(`/portfolio/${slug}`)
-  }, [navigate, slug])
-  
-  // Memoized keydown handler
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      handleClick()
-    }
-  }, [handleClick])
-  
+  }, [category, imageCount])
+
   // Memoized image indicators
-  const imageIndicators = useMemo(() => 
-    project.images.map((_, index) => (
+  const imageIndicators = useMemo(() =>
+    (project?.images ?? []).map((_, index) => (
       <motion.div
         key={index}
         className="w-2 h-2 rounded-full bg-white/40 backdrop-blur-sm border border-white/30"
@@ -92,17 +81,16 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tag, year, slug
         }}
         transition={{ duration: 0.3 }}
       />
-    )), [project.images, currentImageIndex])
+    )), [project, currentImageIndex])
+
+  if (!project) return null
 
   return (
-    <motion.article
+    <MotionLink
+      to={`/portfolio/${slug}`}
       whileHover={{ y: -12, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
-      onClick={handleClick}
-      className="group relative cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-soft backdrop-blur"
-      role="button"
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
+      className="group relative block cursor-pointer overflow-hidden rounded-3xl border border-white/10 bg-white/5 no-underline shadow-soft backdrop-blur"
       aria-label={`View ${title} project details`}
       style={{ willChange: 'transform', isolation: 'isolate' }}
     >
@@ -181,29 +169,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tag, year, slug
           </div>
         </motion.div>
         
-        {/* Quick Actions Overlay */}
-        <motion.div
-          className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileHover={{ scale: 1, opacity: 1 }}
-        >
-          <div className="flex gap-2">
-            <motion.button
-              className="rounded-full bg-black/60 backdrop-blur-sm p-2 border border-white/20"
-              whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.2)' }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Eye size={14} />
-            </motion.button>
-            <motion.button
-              className="rounded-full bg-black/60 backdrop-blur-sm p-2 border border-white/20"
-              whileHover={{ scale: 1.1, backgroundColor: 'rgba(255,255,255,0.2)' }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <ExternalLink size={14} />
-            </motion.button>
-          </div>
-        </motion.div>
       </div>
       
       {/* Content Section */}
@@ -231,11 +196,11 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, tag, year, slug
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
           >
             View case study
-            <span>→</span>
+            <span aria-hidden="true">→</span>
           </motion.span>
         </motion.div>
       </div>
-    </motion.article>
+    </MotionLink>
   )
 }
 

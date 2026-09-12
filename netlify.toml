@@ -1,0 +1,37 @@
+# Build settings live here rather than in the Netlify dashboard so they are
+# version-controlled and cannot silently drift.
+#
+# The build command MUST be `npm run build`, which runs:
+#   tsc  ->  vite build  ->  vite build (SEO manifest)  ->  node scripts/prerender.mjs
+#
+# The prerender step is what writes the per-route HTML (real <title>, meta
+# description and canonical for each URL) and generates sitemap.xml. Running
+# only `vite build` produces the old single empty shell and no sitemap at all.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Fallback for any path with no prerendered file.
+#
+# Netlify serves a matching static file in preference to this rule, and every
+# real route in src/seo/routes.ts gets one, so this fires only for genuinely
+# unknown URLs — which is why it returns a real 404 rather than a 200 rewrite.
+# Soft 404s (unknown URLs answering 200) are what let stale links get indexed as
+# thin content. The app still boots from 404.html and renders the NotFound page.
+#
+# IMPORTANT: adding a route to src/App.tsx means adding it to src/seo/routes.ts
+# too, or a hard refresh on that route will 404.
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# sitemap.xml is generated per build; never let a CDN serve a stale copy.
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

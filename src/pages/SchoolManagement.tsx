@@ -10,6 +10,7 @@ import {
     Search, Award, Rocket,
 } from 'lucide-react'
 import { fadeInUp, staggerContainer } from '../utils/animations'
+import { Seo } from '../seo/Seo'
 
 export const SchoolManagement: React.FC = () => {
     const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly')
@@ -261,29 +262,8 @@ export const SchoolManagement: React.FC = () => {
     ]
     return (
         <>
+            <Seo path="/service/school-management" />
             <Helmet>
-                {/* Primary Meta Tags */}
-                <title>SchoolAims - School Management System for Institutions</title>
-                <meta name="title" content="SchoolAims - School Management System for Institutions" />
-                <meta name="description" content="SchoolAims offers an all-in-one school management system with attendance, fees, online classes & exams. Simplify all administrative tasks effortlessly." />
-                <meta name="keywords" content="school management system,school information management system, school student management system features,education software,school erp,online school portal,student management,fee collection system,attendance system,school administration software, schools management system,learning management system, SchoolAims" />
-                <link rel="canonical" href="https://tech-reign.com/service/school-management" />
-
-                {/* Open Graph / Facebook */}
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="https://tech-reign.com/service/school-management" />
-                <meta property="og:title" content="SchoolAims - Smart School Management Made Simple" />
-                <meta property="og:description" content="Transform your institution with SchoolAims. Manage students, staff, and finances with our powerful, all-in-one educational platform." />
-                <meta property="og:image" content="https://tech-reign.com/SchoolAims/school_logo.png" />
-
-                {/* Twitter */}
-                <meta property="twitter:card" content="summary_large_image" />
-                <meta property="twitter:url" content="https://tech-reign.com/service/school-management" />
-                <meta property="twitter:title" content="SchoolAims - Smart School Management Made Simple" />
-                <meta property="twitter:description" content="Transform your institution with SchoolAims. Manage students, staff, and finances with our powerful, all-in-one educational platform." />
-                <meta property="twitter:image" content="https://tech-reign.com/SchoolAims/school_logo.png" />
-
-                {/* JSON-LD Structured Data */}
                 <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
