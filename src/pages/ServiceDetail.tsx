@@ -682,21 +682,10 @@ export const ServiceDetail: React.FC = () => {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": service.title,
-    "description": service.subtitle,
-    "provider": {
-      "@type": "Organization",
-      "name": "TechReign Digital Studio",
-      "url": "https://tech-reign.com",
-      "logo": "https://tech-reign.com/logo.png",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "Pakistan"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "Worldwide"
-      }
-    },
+    "description": service.seoDescription ?? service.subtitle,
+    // The Organization node in index.html's JSON-LD is on every page, so this
+    // ties each service to that one entity instead of declaring a second copy.
+    "provider": { "@id": "https://tech-reign.com/#organization" },
     "serviceType": service.title,
     "url": `https://tech-reign.com/service/${serviceSlug}`
   }
@@ -710,13 +699,13 @@ export const ServiceDetail: React.FC = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://tech-reign.com"
+        "item": "https://tech-reign.com/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://tech-reign.com#services"
+        "item": "https://tech-reign.com/#services"
       },
       {
         "@type": "ListItem",
