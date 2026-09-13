@@ -68,7 +68,7 @@ export const Contact: React.FC = () => {
         "name": "What services does TechReign offer?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "TechReign is a full-service digital studio specializing in web development, SEO, graphics & 3D design, video editing, social media management, and Web3 solutions. Every TechReign project is custom-tailored to your industry, goals, and technical requirements."
+          "text": "TechReign is a full-service digital studio specializing in web development, GoHighLevel (GHL) setup and automation, SEO, graphics & 3D design, video editing, social media management, and Web3 solutions. Every TechReign project is custom-tailored to your industry, goals, and technical requirements."
         }
       },
       {
@@ -362,7 +362,7 @@ export const Contact: React.FC = () => {
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-teal transition-colors duration-300">What services does TechReign offer?</h3>
                     <p className="text-white/80 leading-relaxed text-base">
-                      TechReign is a full-service digital studio specializing in <span className="text-accent-teal font-medium">web development</span>, <span className="text-accent-violet font-medium">SEO</span>, <span className="text-accent-blue font-medium">graphics & 3D design</span>, <span className="text-accent-teal font-medium">video editing</span>, <span className="text-accent-violet font-medium">social media management</span>, and <span className="text-accent-blue font-medium">Web3 solutions</span>. Every TechReign project is custom-tailored to your industry, goals, and technical requirements.
+                      TechReign is a full-service digital studio specializing in <span className="text-accent-teal font-medium">web development</span>, <span className="text-accent-violet font-medium">GoHighLevel (GHL) setup and automation</span>, <span className="text-accent-violet font-medium">SEO</span>, <span className="text-accent-blue font-medium">graphics & 3D design</span>, <span className="text-accent-teal font-medium">video editing</span>, <span className="text-accent-violet font-medium">social media management</span>, and <span className="text-accent-blue font-medium">Web3 solutions</span>. Every TechReign project is custom-tailored to your industry, goals, and technical requirements.
                     </p>
                   </div>
                 </div>

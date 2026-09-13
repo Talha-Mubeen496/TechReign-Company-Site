@@ -71,6 +71,9 @@ export const HeroSection: React.FC = () => {
               <span className="rounded-full bg-white/10 px-3 py-1 font-medium text-white/80">
                 Web Development
               </span>
+              <span className="rounded-full bg-white/10 px-3 py-1 font-medium text-white/80">
+                GoHighLevel (GHL)
+              </span>
               <span>SEO &amp; Growth Strategy</span>
               <span>3D Experiences</span>
               <span>Brand Design &amp; Figma</span>

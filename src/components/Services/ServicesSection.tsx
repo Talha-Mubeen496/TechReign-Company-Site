@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Code, TrendingUp, Palette, Video, Share2, Box, GraduationCap } from 'lucide-react'
+import { Code, TrendingUp, Palette, Video, Share2, Box, GraduationCap, Workflow } from 'lucide-react'
 import { ServiceCard } from './ServiceCard'
 import { fadeInUp, staggerContainer } from '../../utils/animations'
 
@@ -10,6 +10,12 @@ const services = [
     title: 'Web Development',
     description: 'Build high-performing websites and web applications with modern technologies, responsive design, and seamless user experiences.',
     serviceSlug: 'web-development',
+  },
+  {
+    icon: <Workflow size={20} />,
+    title: 'GoHighLevel (GHL)',
+    description: 'Get GoHighLevel set up properly: CRM pipelines, funnels, booking calendars and workflow automations that follow up with every lead for you.',
+    serviceSlug: 'gohighlevel',
   },
   {
     icon: <TrendingUp size={20} />,
@@ -68,22 +74,34 @@ export const ServicesSection: React.FC = () => {
           </p>
         </motion.div>
 
+        {/* Three cards per row on desktop, laid out on a six-column grid so an
+            incomplete last row can be centred: a lone card starts at column 3,
+            a pair starts at column 2. On tablet (two per row) a lone last card
+            spans the row and centres itself. Works for any number of services. */}
         <motion.div
-          className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-6"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
           {services.map((service, index) => {
-            const isLast = index === services.length - 1
+            const count = services.length
+            const lgRemainder = count % 3
+            const isLast = index === count - 1
+            const isSecondLast = index === count - 2
+            const mdOrphan = count % 2 === 1 && isLast
+
+            const placement = [
+              'lg:col-span-2',
+              lgRemainder === 1 && isLast ? 'lg:col-start-3' : '',
+              lgRemainder === 2 && isSecondLast ? 'lg:col-start-2' : '',
+              mdOrphan ? 'md:col-span-2 flex justify-center' : '',
+            ].join(' ')
+
             return (
-              <motion.div
-                key={service.serviceSlug}
-                variants={fadeInUp}
-                className={`${isLast ? 'md:col-span-2 lg:col-span-1 lg:col-start-2 flex justify-center' : ''}`}
-              >
-                <div className={isLast ? 'w-full max-w-md lg:max-w-none' : 'w-full'}>
+              <motion.div key={service.serviceSlug} variants={fadeInUp} className={placement}>
+                <div className={mdOrphan ? 'w-full max-w-md lg:max-w-none' : 'h-full w-full'}>
                   <ServiceCard
                     icon={service.icon}
                     title={service.title}

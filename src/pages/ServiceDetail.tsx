@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft, CheckCircle2, ArrowRight, Target, Users, Rocket, Zap, TrendingUp, Palette, Code, Video, Share2, Box, Search, Globe, Layers, Film, MessageSquare, Shield } from 'lucide-react'
+import { ArrowLeft, CheckCircle2, ArrowRight, Target, Users, Rocket, Zap, TrendingUp, Palette, Code, Video, Share2, Box, Search, Globe, Layers, Film, MessageSquare, Shield, Workflow, LayoutTemplate, CalendarCheck, Star, Plug } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { fadeInUp, staggerContainer } from '../utils/animations'
 import { Header } from '../components/Navigation/Header'
@@ -93,6 +93,140 @@ const servicesData: Record<string, ServiceData> = {
       {
         question: 'Do you provide hosting and domain setup?',
         answer: 'Yes, we can help with hosting setup, domain configuration, and ongoing maintenance services.'
+      }
+    ]
+  },
+  'gohighlevel': {
+    icon: <Workflow size={48} />,
+    // Paragraphs are separated by a blank line; the Overview section renders each one.
+    overview: `GoHighLevel (GHL) is an all-in-one platform that brings your CRM, sales pipelines, funnels, websites, calendars, email and SMS marketing, and reputation management into a single account. It can replace a whole stack of separate subscriptions, but only when it is set up properly. Out of the box, it is a blank canvas.
+
+TechReign Digital Studio builds and automates GoHighLevel for agencies and local businesses. We structure your pipelines and custom fields, build the funnels and booking flows your customers actually use, and write the workflows that follow up with every lead automatically, so no enquiry goes cold waiting for a reply.
+
+Whether you are moving over from ClickFunnels, HubSpot or a spreadsheet, launching SaaS mode to resell GoHighLevel under your own brand, or rescuing an account that never quite worked, we build it end to end and hand it over ready to use.`,
+    features: [
+      {
+        icon: <Users size={24} />,
+        title: 'CRM & Pipeline Setup',
+        description: 'Contacts, custom fields, tags and sales pipelines structured around how you actually sell, so every lead has a clear next step'
+      },
+      {
+        icon: <Workflow size={24} />,
+        title: 'Workflow Automation',
+        description: 'Automated email and SMS follow-up that responds to new leads in seconds and keeps nurturing them until they book'
+      },
+      {
+        icon: <LayoutTemplate size={24} />,
+        title: 'Funnels & Websites',
+        description: 'Landing pages, sales funnels and full websites built inside GoHighLevel and wired directly into your CRM'
+      },
+      {
+        icon: <CalendarCheck size={24} />,
+        title: 'Calendars & Booking',
+        description: 'Booking calendars with confirmations and reminders that reduce no-shows and drop appointments straight into your pipeline'
+      },
+      {
+        icon: <MessageSquare size={24} />,
+        title: 'Email & SMS Campaigns',
+        description: 'Broadcasts, drip sequences and two-way conversations, all managed from the GoHighLevel unified inbox'
+      },
+      {
+        icon: <Star size={24} />,
+        title: 'Reputation Management',
+        description: 'Automatic review requests after every job, with monitoring and replies, to grow your Google rating steadily'
+      },
+      {
+        icon: <Plug size={24} />,
+        title: 'Integrations',
+        description: 'Stripe, Zapier, Google and Facebook Ads and your existing tools connected, so data flows without manual entry'
+      },
+      {
+        icon: <Layers size={24} />,
+        title: 'SaaS Mode & Snapshots',
+        description: 'White-label GoHighLevel as your own software, with snapshots that give each new client a fully built account'
+      }
+    ],
+    process: [
+      {
+        step: 1,
+        title: 'Discovery & Audit',
+        description: 'We map how you win leads and close sales today, and audit any existing GoHighLevel account for gaps and broken automations.'
+      },
+      {
+        step: 2,
+        title: 'System Architecture',
+        description: 'We design your pipelines, custom fields, tags and workflow logic before building anything, so the account stays clean as you grow.'
+      },
+      {
+        step: 3,
+        title: 'Build & Automate',
+        description: 'We build the funnels, calendars, forms and workflows, and connect your domains, phone numbers and integrations.'
+      },
+      {
+        step: 4,
+        title: 'Test & Launch',
+        description: 'Every workflow is tested end to end with real submissions before it goes live, so no lead falls through the cracks.'
+      },
+      {
+        step: 5,
+        title: 'Training & Support',
+        description: 'Your team gets a walkthrough of the system, and we stay on hand to refine automations and build new campaigns as you grow.'
+      }
+    ],
+    useCases: [
+      {
+        title: 'Marketing Agencies',
+        description: 'White-label GoHighLevel for your clients, with snapshots and SaaS mode that turn every setup into recurring revenue.'
+      },
+      {
+        title: 'Local Service Businesses',
+        description: 'Contractors, roofers, cleaners and home services capturing leads, booking jobs and collecting reviews automatically.'
+      },
+      {
+        title: 'Real Estate Teams',
+        description: 'Lead capture from ads and portals, instant follow-up, and pipelines that track every buyer and seller.'
+      },
+      {
+        title: 'Coaches & Course Creators',
+        description: 'Funnels, memberships and payment flows that sell your programmes and onboard students without manual work.'
+      },
+      {
+        title: 'Appointment-Based Businesses',
+        description: 'Clinics, salons and studios that run on bookings, with reminders and reactivation campaigns that keep calendars full.'
+      },
+      {
+        title: 'Teams Switching Platforms',
+        description: 'Replace ClickFunnels, Calendly, Mailchimp and a separate CRM with one platform and one monthly bill.'
+      }
+    ],
+    faqs: [
+      {
+        question: 'What is GoHighLevel (GHL)?',
+        answer: 'GoHighLevel, often shortened to GHL, is an all-in-one sales and marketing platform. It combines a CRM, sales pipelines, a funnel and website builder, calendars, email and SMS marketing, reputation management and automation in one account, replacing several separate subscriptions.'
+      },
+      {
+        question: 'Do I need my own GoHighLevel account?',
+        answer: 'Usually, yes. You own the subscription and your data, and we build inside it. If you run an agency, we can work in your agency account and set up a sub-account for each of your clients. We will recommend the right plan during discovery.'
+      },
+      {
+        question: 'Can you migrate us from ClickFunnels, HubSpot or another CRM?',
+        answer: 'Yes. We move your contacts, pipelines and key pages across, rebuild your automations natively in GoHighLevel, and plan the switchover so nothing is lost in between.'
+      },
+      {
+        question: 'Do you set up GoHighLevel SaaS mode?',
+        answer: 'Yes. We configure SaaS mode so you can resell GoHighLevel under your own brand, including your pricing plans, Stripe billing, and a snapshot that gives every new client a fully built account from day one.'
+      },
+      {
+        question: 'How long does a GoHighLevel setup take?',
+        answer: 'It depends on scope. A single funnel with a pipeline and follow-up automation can be live quickly, while a full agency build with SaaS mode, snapshots and migrations takes longer. You will get a clear timeline after the discovery call.'
+      },
+      {
+        question: 'Can you fix an existing GoHighLevel account?',
+        answer: 'Yes. It is common for accounts to be set up in a hurry and never finished: broken workflows, duplicate contacts, pipelines nobody uses. We audit what you have, keep what works and rebuild the rest.'
+      },
+      {
+        question: 'Do you offer ongoing GoHighLevel support?',
+        answer: 'Yes. After launch we can stay on to monitor your automations, build new funnels and campaigns, and adjust the system as your business changes.'
       }
     ]
   },
@@ -529,6 +663,9 @@ export const ServiceDetail: React.FC = () => {
     )
   }
 
+  // Every other service, in display order, for the Related Services section.
+  const relatedServices = Object.entries(serviceMeta).filter(([slug]) => slug !== serviceSlug)
+
   const scrollToContact = () => {
     navigate('/#contact')
     setTimeout(() => {
@@ -662,9 +799,11 @@ export const ServiceDetail: React.FC = () => {
               >
                 <div className="glass-card p-8 md:p-12">
                   <h2 className="secondary-heading mb-4">Overview</h2>
-                  <p className="text-white/80 leading-relaxed">
-                    {service.overview}
-                  </p>
+                  <div className="space-y-4 text-white/80 leading-relaxed">
+                    {service.overview.split('\n\n').map((paragraph, index) => (
+                      <p key={index}>{paragraph}</p>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -796,6 +935,42 @@ export const ServiceDetail: React.FC = () => {
                     <h3 className="text-lg font-semibold text-white mb-2">{faq.question}</h3>
                     <p className="text-white/80">{faq.answer}</p>
                   </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Related Services. Contextual links between service pages: the
+              footer links are sitewide boilerplate, which search engines
+              weight less than links inside the page content. */}
+          <section className="section-padding">
+            <div className="container-max">
+              <motion.div
+                variants={fadeInUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                className="mx-auto max-w-3xl text-center mb-12"
+              >
+                <p className="heading-label mb-3">Explore More</p>
+                <h2 className="secondary-heading">Related Services</h2>
+              </motion.div>
+
+              <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {relatedServices.map(([slug, related]) => (
+                  <Link
+                    key={slug}
+                    to={`/service/${slug}`}
+                    className="group glass-card flex flex-col p-6 no-underline transition hover:-translate-y-1"
+                  >
+                    <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-accent-teal">
+                      {related.title}
+                    </h3>
+                    <p className="mt-2 flex-1 text-sm leading-relaxed text-white/70">{related.subtitle}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-accent-teal">
+                      Learn more <ArrowRight size={14} aria-hidden="true" />
+                    </span>
+                  </Link>
                 ))}
               </div>
             </div>

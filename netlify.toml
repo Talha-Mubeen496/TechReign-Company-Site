@@ -15,6 +15,21 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Short links to the GoHighLevel service. The page lives at
+# /service/gohighlevel because that is what people search for, but "GHL" is
+# what the team and clients say. Permanent (301) so any links shared with the
+# short form pass their value to the real page. These must sit above the
+# catch-all below: Netlify applies the first rule that matches.
+[[redirects]]
+  from = "/service/ghl"
+  to = "/service/gohighlevel"
+  status = 301
+
+[[redirects]]
+  from = "/ghl"
+  to = "/service/gohighlevel"
+  status = 301
+
 # Fallback for any path with no prerendered file.
 #
 # Netlify serves a matching static file in preference to this rule, and every
