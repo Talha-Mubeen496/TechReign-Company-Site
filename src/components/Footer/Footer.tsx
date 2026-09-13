@@ -15,6 +15,7 @@ const usefulLinks = [
 // reachable only from the sitemap, which gets them crawled but not ranked.
 const serviceLinks = [
   { label: 'Web Development', slug: 'web-development' },
+  { label: 'GoHighLevel (GHL)', slug: 'gohighlevel' },
   { label: 'SEO', slug: 'seo' },
   { label: 'Graphics and 3D Designing', slug: 'graphics-3d-designing' },
   { label: 'Video Editing', slug: 'video-editing' },

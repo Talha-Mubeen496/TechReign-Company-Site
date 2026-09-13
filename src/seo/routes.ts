@@ -75,8 +75,8 @@ const staticRoutes: RouteMeta[] = [
 
 const serviceRoutes: RouteMeta[] = Object.entries(serviceMeta).map(([slug, meta]) => ({
   path: `/service/${slug}`,
-  title: `${meta.title} Services — TechReign Digital Studio`,
-  description: meta.subtitle,
+  title: meta.seoTitle ?? `${meta.title} Services — TechReign Digital Studio`,
+  description: meta.seoDescription ?? meta.subtitle,
   type: 'website',
   image: DEFAULT_IMAGE,
   lastmod: TODAY,
