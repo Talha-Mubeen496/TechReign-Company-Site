@@ -5,12 +5,17 @@
 // and social scrapers (Facebook, LinkedIn, WhatsApp, Slack) never render at
 // all — so every shared link previewed as a bare URL.
 //
-// This walks src/seo/routes.ts and writes dist/<path>/index.html with that
+// This walks src/seo/routes.ts and writes one HTML file per route with that
 // route's real title, description, canonical and Open Graph tags baked in.
-// Netlify serves a matching static file in preference to the SPA fallback in
-// public/_redirects (that rule is a plain 200 rewrite, not a forced one), so
-// /contact resolves to dist/contact/index.html while the app keeps working
-// exactly as before for client-side navigation.
+// Netlify serves a matching static file in preference to the catch-all rule in
+// netlify.toml, while the app keeps working exactly as before for client-side
+// navigation.
+//
+// Files are flat (dist/contact.html), never folders (dist/contact/index.html).
+// Netlify answers /contact with a 301 to /contact/ whenever it finds a folder
+// index, which would send every page away from its own canonical URL and put
+// a redirect behind every sitemap entry and internal link. A flat file is
+// served at /contact with a 200, and /contact/ redirects back to /contact.
 //
 // It also regenerates sitemap.xml from the same list, so the sitemap can no
 // longer drift from the routes that actually exist.
@@ -67,10 +72,14 @@ const headFor = (route) => {
 
 let written = 0
 for (const route of routes) {
+  if (route.path !== '/' && route.path.endsWith('/')) {
+    throw new Error(`prerender: route "${route.path}" must not end with a slash`)
+  }
   const html = stripped.replace('</head>', `${headFor(route)}\n  </head>`)
-  const outDir = route.path === '/' ? dist : join(dist, route.path)
-  await mkdir(outDir, { recursive: true })
-  await writeFile(join(outDir, 'index.html'), html, 'utf8')
+  // '/' -> dist/index.html, '/contact' -> dist/contact.html, '/blog/x' -> dist/blog/x.html
+  const outFile = route.path === '/' ? join(dist, 'index.html') : join(dist, `${route.path}.html`)
+  await mkdir(dirname(outFile), { recursive: true })
+  await writeFile(outFile, html, 'utf8')
   written += 1
 }
 
